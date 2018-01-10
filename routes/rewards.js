@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', function(req, res) {
-  res.status(200).json({ message: 'rawr! you did it!!!' });
+  res.status(200).json({ message: 'rewards test' });
 });
 
 module.exports = router

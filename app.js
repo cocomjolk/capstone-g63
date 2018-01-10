@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 //let patients = require('./routes/patients')
 let rewards = require('./routes/rewards')
 let doctors = require('./routes/doctors')
+let videos = require('./routes/videos')
 let users = require('./routes/users')
 
 //incoming request from client, goint to routes in routes folder.
@@ -18,6 +19,8 @@ let users = require('./routes/users')
 //app.use('/api/rewards', rewards);
 app.use('/api/doctors', doctors);
 app.use('/api/users', users);
+
+
 
 app.listen(PORT);
 console.log('app.js server listening on port' + PORT);

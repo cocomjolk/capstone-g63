@@ -4,7 +4,7 @@ var knex = require('../db/knex');
 
 //DOCTOR CREATE RECORD
 router.post('/', (req, res) => {
-  knex('doctor_id')
+  knex('doctors')
   .insert(req.body)
   .returning('*')
   .then((user) => {
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', function(req, res) {
-  res.status(200).json({ message: 'rawr! you did it!!!' });
+  res.status(200).json({ message: 'doctors test' });
 });
 
 module.exports = router
