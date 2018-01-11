@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+//used so everything in public folder like javascript/app.js is not treated as a route
 app.use(express.static('public'))
 
 
