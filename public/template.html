@@ -1,7 +1,6 @@
 
 <nav id="header" class="navbar navbar-default">
   <div class="navbar-brand">Recovery Plus</div>
-
   <div>
     <a class="btn btn-info" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">Sign in</a>
     <a class="btn btn-info" ng-click="$ctrl.newAccount()" ng-show="$ctrl.showButtonNewAccount">Create a New Account</a>
@@ -13,34 +12,34 @@
   </div>
 </nav>
 
-
-</nav>
-
-
 <!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
 <div class="row" ng-show="$ctrl.showFormSignIn">
     <div class="col-md-8">
+      <form ng-submit="$ctrl.logIn()">
 
-      <form ng-submit="$ctrl.createPost($ctrl.post.title, $ctrl.post.author, $ctrl.post.body)">
-        <div>
-          <label for="title">email</label>
-          <input ng-model="$ctrl.post.title" id="title" class="form-control" required>
+        <div class="form-check form-check-inline">
+          <input ng-model="$ctrl.users.patientBox" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">Patient</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input ng-model="$ctrl.users.doctorBox" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+          <label class="form-check-label" for="inlineCheckbox2">Doctor</label>
         </div>
 
         <div>
-          <label for="author">Password</label>
-          <input ng-model="$ctrl.post.author" id="author" class="form-control" required>
+          <label for="email">email</label>
+          <input ng-model="$ctrl.users.email" id="email" class="form-control" required>
         </div>
-
+        <div>
+          <label for="password">Password</label>
+          <input ng-model="$ctrl.users.password" id="password" class="form-control" required>
+        </div>
         <div class="form-group">
           <br>
-          <button  type="submit" class="btn btn-primary">
-            Sign In
-          </button>
+          <button  type="submit" class="btn btn-primary">Sign In</button>
           </br>
         </div>
       </form>
-
     </div>
   </div>
   <!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
@@ -49,41 +48,51 @@
   <div class="row" ng-show="$ctrl.showFormNewAccount">
       <div class="col-md-8">
 
-        <form ng-submit="$ctrl.createProfile($ctrl.post.title, $ctrl.post.author, $ctrl.post.body)">
+        <form ng-submit="$ctrl.createProfile()">
 
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <input ng-model="$ctrl.users.patientBox" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
             <label class="form-check-label" for="inlineCheckbox1">Patient</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <input ng-model="$ctrl.users.doctorBox" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
             <label class="form-check-label" for="inlineCheckbox2">Doctor</label>
           </div>
           <br>
           <div>
-            <label for="title">First Name</label>
-            <input ng-model="$ctrl.post.title" id="title" class="form-control" required>
+            <label for="first_name">First Name</label>
+            <input ng-model="$ctrl.users.first_name" id="first_name" class="form-control" required>
           </div>
 
           <div>
-            <label for="author">Last Name</label>
-            <input ng-model="$ctrl.post.author" id="author" class="form-control" required>
+            <label for="last_name">Last Name</label>
+            <input ng-model="$ctrl.users.last_name" id="last_name" class="form-control" required>
           </div>
 
           <div>
-            <label for="author">email</label>
-            <input ng-model="$ctrl.post.author" id="author" class="form-control" required>
+            <label for="email">email</label>
+            <input ng-model="$ctrl.users.email" id="email" class="form-control" required>
           </div>
 
           <div>
-            <label for="author">Phone</label>
-            <input ng-model="$ctrl.post.author" id="author" class="form-control" required>
+            <label for="phone">Phone</label>
+            <input ng-model="$ctrl.users.phone" id="phone" class="form-control" required>
           </div>
 
 
           <div>
-            <label for="image-url">Image URL</label>
-            <input ng-model="$ctrl.post.image" id="image-url" class="form-control" required>
+            <label for="img">Image URL</label>
+            <input ng-model="$ctrl.users.img" id="img" class="form-control" required>
+          </div>
+
+          <div>
+            <label for="password">Password</label>
+            <input ng-model="$ctrl.users.password" id="password" class="form-control" required>
+          </div>
+
+          <div>
+            <label for="password">Re-Type Password</label>
+            <input ng-model="$ctrl.users.password" id="password" class="form-control" required>
           </div>
 
           <div class="form-group">

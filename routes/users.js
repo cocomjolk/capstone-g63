@@ -12,9 +12,15 @@ router.post('/', (req, res) => {
   });
 })
 
-router.get('/', function(req, res) {
-  res.status(200).json({ message: 'users test' });
+router.get('/', (req, res) => {
+  knex('users')
+  .select('*')
+  .then((users) => {
+    res.status(200).json(users);
+  })
 });
+
+
 
 module.exports = router
 
