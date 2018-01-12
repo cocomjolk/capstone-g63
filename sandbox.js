@@ -18,8 +18,10 @@ $stateProvider
 
 
 //Navigate to a route
-  controller.$inject = ['$state']
+  // controller.$inject = ['$state']
 
+
+//
 function controller($state) {
   const vm = this
 
