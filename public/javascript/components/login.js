@@ -118,6 +118,7 @@
       <div ng-show="$ctrl.showFormSignIn">
         <!--  <div class="col-md-8"> -->
           <form ng-submit="$ctrl.logIn()">
+            <div class="form-group">
 
             <div class="form-check form-check-inline">
               <input ng-model="$ctrl.users.patientBox" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
@@ -138,7 +139,6 @@
              <input ng-model="$ctrl.users.password" id="password" class="form-control" placeholder="Enter Password" required/>
           </div>
 
-          <div class="form-group">
           <br>
             <button  type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
           </div>
@@ -182,7 +182,7 @@
           </br>
         <div class="input-group">
            <span class="input-group-addon">Image URL</span>
-           <input ng-model="$ctrl.users.email" id="email" class="form-control" placeholder="Enter Image URL" required/>
+           <input ng-model="$ctrl.users.img" id="img" class="form-control" placeholder="Enter Image URL" required/>
         </div>
           </br>
         <div class="input-group">
@@ -201,9 +201,6 @@
         </div>
       </form>
     </div>
-
-
-
 
     <!-- NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM   -->
 
