@@ -6,6 +6,7 @@
     },
     template:`
       <h1>Welcome to page 2</h1>
+
       <a ui-sref='login'>Go back to page 1</a>
     `
   })
