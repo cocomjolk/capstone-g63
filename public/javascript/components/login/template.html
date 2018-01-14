@@ -23,8 +23,8 @@
       </div>
     </nav>
     </div>
-    <!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
 
+<!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
       <div ng-show="$ctrl.showFormSignIn">
         <!--  <div class="col-md-8"> -->
           <form ng-submit="$ctrl.logIn()">
@@ -38,9 +38,6 @@
                 <input ng-model="$ctrl.users.doctorBox" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Doctor
               </label>
             <!-- </div> -->
-
-
-
           </br>
 
           <div class="input-group">
@@ -58,42 +55,39 @@
           </div>
           </form>
         </div>
-      <!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
 
-    <!-- NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM  -->
+<!-- NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM  -->
     <div ng-show="$ctrl.showFormNewAccount">
         <form ng-submit="$ctrl.createProfile()">
-
-          <!-- <div class="form-check form-check-inline"> -->
           <div>
             <label class="radio-inline">
-              <input ng-model="$ctrl.users.patientBox" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Patient
+              <input ng-model="$ctrl.users.patientBox" ng-click="$ctrl.showDropdown = !$ctrl.showDropdown" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+              Patient
             </label>
             <label class="radio-inline">
-              <input ng-model="$ctrl.users.doctorBox" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Doctor
+              <input ng-model="$ctrl.users.doctorBox" ng-click="$ctrl.showDropdown = false" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required>
+              Doctor
             </label>
-
-    <!-- <div  data-toggle="buttons">
-            <label class="btn btn-primary active">
-            <input ng-model="$ctrl.users.patientBox" type="checkbox" name="options" id="option1" autocomplete="off" checked>Patient</label>
-            <label class="btn btn-primary">
-            <input ng-model="$ctrl.users.doctorBox" type="checkbox" name="options" id="inlineCheckbox2" autocomplete="off">Doctor</label>
-         </div> -->
-            <div class="btn-group">
-              <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-xs" >
+            <!-- DROP DOWN DOCTOR SELECTOR -->
+            <div ng-show="$ctrl.showDropdown"  class="btn-group">
+              <button  data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-xs" >
                 Select Doctor
                 <span class="caret"> </span>
               </button>
-              <!-- <ul  class="dropdown"> -->
-                <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose Doctor <b class="caret"></b></a> -->
-                <ul class="dropdown-menu">
-                  <li><a href="#">Dr. Strange</a></li>
-                  <li><a href="#">Dr. Evil</a></li>
+                <!-- NG-REPEAT -->
+                <ul  class="dropdown-menu">
+                  <div  ng-repeat="name in $ctrl.data" >
+                    <li>
+                      <div class="form-check">
+                        <input ng-model="$ctrl.doctor.id" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="{{name.id}}">
+                        <label class="form-check-label" for="exampleRadios1">Dr. {{name.last_name}}</label>
+                      </div>
+                    <li>
+                  </div>
                 </ul>
-              </ul>
             </div>
           </div>
-
+        <!-- {{$ctrl.data[0].last_name}} -->
         <!-- </div> -->
       </br>
 
