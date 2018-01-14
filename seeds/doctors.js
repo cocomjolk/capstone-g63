@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
           email: 'michaeldquiroz@gmail.com',
           phone: '5127487651',
           location: 'Austin',
-          img: 'https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13707810_10209041618691077_3196789863902341361_n.jpg?oh=caf0a6322563504299f2326ae5dc6975&oe=5AEF9384'
+          img: 'https://s3-media3.fl.yelpcdn.com/bphoto/c-mJLLC5VOCRWxjZllP7Mw/ls.jpg'
         },
         { first_name: 'Dr.',
           last_name: 'Strange',

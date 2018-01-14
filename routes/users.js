@@ -19,11 +19,35 @@ router.post('/', (req, res) => {
 // USERS GET ALL
 router.get('/', (req, res) => {
   knex('users')
-  .select('*')
+  // .select('*')
   .then((users) => {
     res.status(200).json(users);
   })
 });
+
+//USER GET USER INFORMATION WITH USER ID
+router.get('/id', (req, res) => {
+  console.log(req.query.id)
+  knex('users')
+  .where({id: req.query.id})
+  //need first() to prevent from returning array
+  .first()
+  .then((user) => {
+    res.status(200).json(user);
+  });
+});
+
+// REWARDS GET ALL REWARDS WITH DOCTOR ID:
+router.get('/rewards', (req, res) => {
+  console.log(req.query.id)
+  knex('rewards')
+  .where({id: req.query.id})
+  .then((rewards) => {
+    res.status(200).json(rewards);
+  })
+});
+
+
 
 //USERS EDIT
 router.get('/:id/edit', function(req, res){
@@ -31,7 +55,8 @@ router.get('/:id/edit', function(req, res){
   .select('*')
   .where({id: req.params.id})
   .first()
-  .then(function(user){
+  .then(function(use){
+    res.status(200).json(user);
     res.render('users/edit', {user:user})
    })
 });

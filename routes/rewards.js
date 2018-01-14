@@ -12,10 +12,12 @@ router.post('/', (req, res) => {
   });
 })
 
-// REWARDS GET ALL
+
+// REWARDS GET ALL REWARDS WITH DOCTOR ID:
 router.get('/', (req, res) => {
+  console.log(req.query.doctor_id)
   knex('rewards')
-  .select('*')
+  .where({doctor_id: req.query.doctor_id})
   .then((rewards) => {
     res.status(200).json(rewards);
   })

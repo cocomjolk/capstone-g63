@@ -17,6 +17,18 @@
         url: '/page-two',
         component: 'pageTwo'
       })
+      .state('doctor-view',{
+        url: '/doctor-view',
+        component: 'doctorView'
+      })
+      .state('patient-view',{
+        url: '/patient-view',
+        component: 'patientView'
+      })
+      .state('rewards-view',{
+        url: '/rewards-view',
+        component: 'rewardsView'
+      })
     }
 
 }) ()

@@ -22,6 +22,24 @@ exports.seed = function(knex, Promise) {
             points: '100',
             doctor_id: 2,
             img: 'https://fsmedia.imgix.net/44/13/42/4e/4fbc/410d/8b23/2e0998d75cbd/benedict-cumberbatch-as-doctor-strange-possessing-the-eye-of-agomotto-marvel.jpeg'
+          },
+          { first_name: 'George',
+            last_name: 'Washington',
+            password: 'password',
+            email: 'cocomjolk@hotmail.com',
+            phone: '5127487651',
+            points: '10000',
+            doctor_id: 1,
+            img: 'https://media1.britannica.com/eb-media/95/4995-004-45F5BF39.jpg'
+          },
+          { first_name: 'Harry',
+            last_name: 'Henderson',
+            password: 'password',
+            email: 'cocomjolk@hotmail.com',
+            phone: '5127487651',
+            points: '10',
+            doctor_id: 2,
+            img: 'https://memegenerator.net/img/images/600x600/15088116/harry-henderson.jpg'
           }
 
       ]);
