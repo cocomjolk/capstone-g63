@@ -37,17 +37,6 @@ router.get('/id', (req, res) => {
   });
 });
 
-// REWARDS GET ALL REWARDS WITH DOCTOR ID:
-router.get('/rewards', (req, res) => {
-  console.log(req.query.id)
-  knex('rewards')
-  .where({id: req.query.id})
-  .then((rewards) => {
-    res.status(200).json(rewards);
-  })
-});
-
-
 
 //USERS EDIT
 router.get('/:id/edit', function(req, res){

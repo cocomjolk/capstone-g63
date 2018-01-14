@@ -3,6 +3,9 @@
 <!-- Patient View Patient View Patient View Patient View Patient View  -->
 
 <div class="container">
+  <div class="row">
+
+
   <nav class="navbar navbar-default" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -30,7 +33,22 @@
   <img ng-src="{{$ctrl.img}}" class="img-circle center-block img-responsive" alt="User image">
   <h3>{{$ctrl.points}} points</h3>
 
+<div class="center-block">
 
+</div>
+    <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">Take Video</a>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Recors Video</button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Points</button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Earn</button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
+  </div>
 
 
 
@@ -101,4 +119,5 @@
       </div>
     </div>
 
+  </div>
 </div>
