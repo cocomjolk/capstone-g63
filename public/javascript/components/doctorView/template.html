@@ -1,0 +1,141 @@
+<!-- DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW  -->
+<!-- DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW  -->
+<!-- DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW  -->
+<!-- DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW  -->
+<!-- DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW DOCTOR VIEW  -->
+
+<div class="container">
+  <div class="row">
+
+<!-- NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBARNAVBAR -->
+    <nav class="navbar navbar-default" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a ui-sref='login'>Home</a></li>
+          <li><a ui-sref='login'>Log Out</a></li>
+
+        </ul>
+      </div>
+    </nav>
+
+<!-- LEFT BAR DIV LEFT BAR DIV LEFT BAR DIV LEFT BAR DIV LEFT BAR DIV   -->
+    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
+      <div class="customDiv">
+      </div>
+    </div>
+
+<!-- CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV -->
+    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+      <div class="customDiv">
+
+
+
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <h1>Hi Dr. {{$ctrl.first_name}}</h1>
+            <img ng-src="{{$ctrl.img}}" class="img-circle center-block img-responsive" alt="User image">
+            <h3>{{$ctrl.points}} points</h3>
+
+        </div>
+      </div>
+    </div>
+
+<!-- RIGHT BAR DIV RIGHT BAR DIV RIGHT BAR DIV RIGHT BAR DIV  -->
+    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
+      <div class="customDiv">
+      </div>
+    </div>
+  </div>
+
+<!-- SECOND ROW SECOND ROW SECOND ROW SECOND ROW SECOND ROW  SECOND ROW  SECOND ROW  -->
+<!-- SECOND ROW SECOND ROW SECOND ROW SECOND ROW SECOND ROW  SECOND ROW  SECOND ROW  -->
+<!-- SECOND ROW SECOND ROW SECOND ROW SECOND ROW SECOND ROW  SECOND ROW  SECOND ROW  -->
+<!-- SECOND ROW SECOND ROW SECOND ROW SECOND ROW SECOND ROW  SECOND ROW  SECOND ROW  -->
+    <div class="row">
+      <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
+        <div class="customDiv">
+        </div>
+      </div>
+
+<!-- SECOND CONTENT DIV SECOND CONTENT DIV  SECOND CONTENT DIV  SECOND CONTENT DIV   -->
+      <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
+        <div class="customDiv">
+
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-lg btn-block">Record Video</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
+          </div>
+          <!-- <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Points</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Earn</button>
+          </div> -->
+
+          
+
+          <!-- <div ng-repeat='reward in $ctrl.data' class="row" ng-show='true'>
+            <div class="col-xs-10 col-sm-8 col-md- col-lg-6">
+
+              <div class="well">
+                <div class="media-left">
+                  <img ng-src="{{reward.img}" class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">
+              {{reward.reward_name}}
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg btn-block">{{reward.reward_points}} Points</button>
+              </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div> -->
+
+
+          <!-- LIST OF REWARDS FROM DOCTOR | orderBy: sortPosts -->
+          <!-- <div ng-repeat='reward in $ctrl.data' class="row" ng-show='true'>
+              <div class="well">
+                <div class="media-left">
+                  <img ng-src="{{reward.img}" class="img-fluid" alt="Responsive image">
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">
+                    {{reward.reward_name}}
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-lg btn-block">{{reward.reward_points}} Points</button>
+                    </div>
+                  </h4>
+
+                </div>
+              </div>
+            </div> -->
+
+        </div>
+      </div>
+
+<!-- RIGHT BAR DIV RIGHT BAR DIV RIGHT BAR DIV RIGHT BAR DIV  -->
+      <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
+        <div class="customDiv">
+        </div>
+      </div>
+
+    </div>
+
+</div>

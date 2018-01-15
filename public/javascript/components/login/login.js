@@ -47,8 +47,13 @@
         vm.goBack = false;
       }
 
-      vm.navigate = function () {
+      vm.goToPatientView = function () {
         $state.go('patient-view')
+      }
+
+      vm.goToDoctorView = function (data) {
+        console.log(data);
+        $state.go('doctor-view', data)
       }
 
       // NEED TO INCORPORATE WITH AUTH/BCRYPT
@@ -67,16 +72,42 @@
             }
           }).then(function(res) {
             //prints user info from "users" db
-            console.log(res);
-            console.log(res.data.first_name);
+            res.data.id// console.log(res);
+            // console.log(res.data.first_name);
             if( res.data.password === vm.user.password){
               console.log('passwords match');
               //got to user page
               //link to user page passing user id
-              vm.navigate()
+              console.log(res.data.id);
+              vm.goToPatientView(res.data)
+            } else {
+              console.log('invalid email')
+              vm.invalidEmail = "Invalid Email or Password"
+            }
+          })
+
+          } else if (vm.users.doctorBox) {
+            $http({
+              method: 'GET',
+              url: '/api/doctors/email',
+              params: {
+                email: vm.user.email
               }
-            })
-          }
+            }).then(function(res) {
+              //prints doctor info from "doctors" db
+              console.log(res);
+              console.log('Dr. ' + res.data.last_name);
+              if( res.data.password === vm.user.password){
+                console.log('passwords match');
+                //got to user page
+                //link to user page passing user id
+                vm.goToDoctorView()
+                } else {
+                  console.log('invalid email')
+                  vm.invalidEmail = "Invalid Email or Password"
+                }
+              })
+            }
           function errorCallback(response) {}
         }
 
@@ -84,10 +115,13 @@
       vm.createProfile = function() {
         vm.showButtonSignIn = true;
         vm.showButtonNewAccount = true;
-        vm.showFormNewAccount = false;
+
         vm.goBack = false;
         // console.log(vm.users);
         if (vm.users.patientBox) {
+          if(!vm.doctor.id){
+            console.log('Choose a doctor option');
+          }
           console.log(vm.doctor.id);
           $http({
             method: 'POST',
@@ -130,6 +164,7 @@
           }),
           function errorCallback(response) {}
         }
+        vm.showFormNewAccount = false;
       }
 
     },

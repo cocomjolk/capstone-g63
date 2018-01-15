@@ -4,137 +4,96 @@
 
 <div class="container">
   <div class="row">
+
+<!-- NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBARNAVBAR -->
+    <nav class="navbar navbar-default" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a ui-sref='login'>Home</a></li>
+          <li><a ui-sref='login'>Log Out</a></li>
+
+        </ul>
+      </div>
+    </nav>
+
     <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
       <div class="customDiv">
       </div>
     </div>
 
+<!-- CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV -->
     <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
       <div class="customDiv">
 
 
 
-  <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li><a ui-sref='login'>Home</a></li>
-        <li><a ui-sref='login'>Log Out</a></li>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </nav>
+      <h1>Hi {{$ctrl.first_name}}</h1>
+      <img ng-src="{{$ctrl.img}}" class="img-circle center-block img-responsive" alt="User image">
+      <h3>{{$ctrl.points}} points</h3>
 
-  <div class="col-xs-10 col-sm-8 col-md-6 ">
-    <h1>Hi {{$ctrl.first_name}}</h1>
-    <img ng-src="{{$ctrl.img}}" class="img-circle center-block img-responsive" alt="User image">
-    <h3>{{$ctrl.points}} points</h3>
-
-<div class="center-block">
-
-</div>
-    <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">Take Video</a>
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Recors Video</button>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Points</button>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Earn</button>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
-  </div>
-
-</div>
-
-
-
-  <div ng-repeat='post in $ctrl.posts | filter:searchText | orderBy: sortPosts' class="row" ng-show="!$ctrl.showForm">
-      <div class="col-md-12">
-
-        <div class="well">
-          <div class="media-left">
-            <img ng-src="{http://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg" class="img-fluid" alt="Responsive image">
+        <!-- <div class="center-block">
+        </div> -->
+      <!-- <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">Take Video</a> -->
+      <!-- <div class="btn-group"> -->
+          <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-lg btn-block">Record Video</button>
           </div>
-          <div class="media-body">
-            <h4 class="media-heading">
-              {{post.title}}
-              |
-              <a><i ng-click="$ctrl.upVote(post)" class="glyphicon glyphicon-arrow-up"></i></a>
-              <a><i ng-click="$ctrl.downVote(post)" class="glyphicon glyphicon-arrow-down"></i></a>
-              {{post.votes}}
-            </h4>
-
-            <div class="text-right">
-              {{post.author}}
-            </div>
-              <p>{{post.body}}</p>
-            <div>
-              <div am-time-ago="post.createdOn"></div>
-              <!-- {{post.createdOn | date }} -->
-              |
-              <i class="glyphicon glyphicon-comment"></i>
-              <!-- COMMENTS LINK -->
-              <!-- using post.showComment vs $ctrl.showComment, post isolsting target, $ctrl changes all logic globally -->
-              <a ng-click="post.showComment = !post.showComment " ng-show="post.showComment == false">
-                <ng-pluralize count='post.comments.length' when="{'0': 'No Comments', '1': '1 comment', 'other': '{} comments'}"></ng-pluralize>
-              </a>
-              <a ng-click="post.showComment = !post.showComment " ng-show="post.showComment == true">
-                <ng-pluralize count='post.comments.length' when="{'0': 'Hide Comments', '1': 'Hide comment', 'other': 'Hide comments'}"></ng-pluralize>
-              </a>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
+          </div>
+          <!-- <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Points</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Earn</button>
+          </div> -->
+        </br>
+        </br>
+      <!-- </div> -->
 
 
-              <!-- COMMENTS LIST & FORM -->
-            </div>
-            <div class="row">
-              <div class="col-md-offset-1">
-                <hr>
-                <p>
-                  <div ng-show="post.showComment" class="comment">
-                    <ul ng-repeat="comment in post.comments"  >
-                      <li>{{comment.text}} </li>
-                    </ul>
-                </p>
-
-              <!-- Passing in post from original ng-repeat -->
-              <form ng-submit="$ctrl.createComment(post)" class="form-inline">
-                  <div class="form-group">
-                    <input ng-model="$ctrl.post.comment.text" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" class="btn btn-primary">
-                  </div>
-                </form>
-
+<!-- LIST OF REWARDS FROM DOCTOR | orderBy: sortPosts -->
+      <div ng-repeat='reward in $ctrl.data' class="row" ng-show='true'>
+            <div class="well">
+              <div class="media-left">
+                <img ng-src="{{reward.img}" class="img-fluid" alt="Responsive image">
               </div>
+              <div class="media-body">
+                <h4 class="media-heading">
+                  {{reward.reward_name}}
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">{{reward.reward_points}} Points</button>
+                  </div>
+                </h4>
+
               </div>
             </div>
           </div>
+
         </div>
+
 
       </div>
     </div>
 
-
-        </div>
-      </div>
     <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
       <div class="customDiv">
-
       </div>
     </div>
+
   </div>
 </div>

@@ -1,6 +1,7 @@
 <!-- Login template Login template Login template Login template  -->
 <div class="container">
   <div class="row">
+
     <div class="text-center">
       <a ui-sref='page-two'>Page 2 </a>
       <a ui-sref='patient-view'>patientView  </a>
@@ -9,126 +10,130 @@
     </div>
 
     <div class="text-center">
-    <nav id="header" class="navbar navbar-default">
-      <div class="navbar-brand">Recovery Plus</div>
-    </br>
-      <div>
-        <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">LOG IN</a>
-        <a class="btn btn-primary" ng-click="$ctrl.newAccount()" ng-show="$ctrl.showButtonNewAccount">SIGN UP</a>
-      </div>
-      <div>
-        <p><a class="btn btn-info" ng-click="$ctrl.formGoBack()" ng-show="$ctrl.goBack">Go Back</a></p>
-      </div>
-      <div>
-      </div>
-    </nav>
+      <nav class="navbar navbar-default">
+        <div class="navbar-brand">Recovery Plus</div>
+        </br>
+        <div>
+          <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">LOG IN</a>
+          <a class="btn btn-primary" ng-click="$ctrl.newAccount()" ng-show="$ctrl.showButtonNewAccount">SIGN UP</a>
+        </div>
+        <div>
+          <p><a class="btn btn-info" ng-click="$ctrl.formGoBack()" ng-show="$ctrl.goBack">Go Back</a></p>
+        </div>
+        <div>
+        </div>
+      </nav>
     </div>
 
 <!-- SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM SIGN IN FORM   -->
-      <div ng-show="$ctrl.showFormSignIn">
-        <!--  <div class="col-md-8"> -->
-          <form ng-submit="$ctrl.logIn()">
+    <div ng-show="$ctrl.showFormSignIn">
+        <form ng-submit="$ctrl.logIn()">
             <div class="form-group">
 
-            <!-- <div class="form-check form-check-inline"> -->
+<!-- RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO RADIO -->
               <label class="radio-inline">
-                <input ng-model="$ctrl.users.patientBox" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Patient
+                    <input ng-model="$ctrl.users.patientBox" type="radio" name="inLineRadio" value="1" required> Patient
               </label>
+
               <label class="radio-inline">
-                <input ng-model="$ctrl.users.doctorBox" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Doctor
+                    <input ng-model="$ctrl.users.doctorBox" type="radio" name="inLineRadio" value="2" required> Doctor
               </label>
-            <!-- </div> -->
-          </br>
 
-          <div class="input-group">
-             <span class="input-group-addon">Email</span>
-             <input ng-model="$ctrl.user.email" id="email" class="form-control" placeholder="Valid email format is example@domain.com" required/>
-          </div>
-            </br>
-          <div class="input-group">
-             <span class="input-group-addon">Password</span>
-             <input ng-model="$ctrl.user.password" id="password" class="form-control" placeholder="Enter Password" required/>
-          </div>
+              </br>
 
-          <br>
-            <button  type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
-          </div>
-          </form>
-        </div>
+              <div class="input-group">
+                <span class="input-group-addon">Email</span>
+                <input ng-model="$ctrl.user.email"  class="form-control" type="email" placeholder="Valid email format is example@domain.com" required/>
+              </div>
+              </br>
+              <div class="input-group">
+                <span class="input-group-addon">Password</span>
+                <input ng-model="$ctrl.user.password"  class="form-control" type="password" placeholder="Enter Password" required/>
+              </div>
+
+              <br>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Sign In</button>
+            </div>
+        </form>
+    </div>
 
 <!-- NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM NEW ACCOUNT FORM  -->
     <div ng-show="$ctrl.showFormNewAccount">
-        <form ng-submit="$ctrl.createProfile()">
-          <div>
-            <label class="radio-inline">
-              <input ng-model="$ctrl.users.patientBox" ng-click="$ctrl.showDropdown = !$ctrl.showDropdown" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+      <form ng-submit="$ctrl.createProfile()">
+        <div>
+          <label class="radio-inline">
+              <input ng-model="$ctrl.users.patientBox" ng-click="$ctrl.showDropdown = !$ctrl.showDropdown" type="radio" name="inLineRadio"  value="option1" required>
               Patient
             </label>
-            <label class="radio-inline">
-              <input ng-model="$ctrl.users.doctorBox" ng-click="$ctrl.showDropdown = false" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required>
+          <label class="radio-inline">
+              <input ng-model="$ctrl.users.doctorBox" ng-click="$ctrl.showDropdown = false" type="radio" name="inLineRadio"  value="option2" required>
               Doctor
             </label>
-            <!-- DROP DOWN DOCTOR SELECTOR -->
-            <div ng-show="$ctrl.showDropdown"  class="btn-group">
-              <button  data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-xs" >
-                Select Doctor
-                <span class="caret"> </span>
+
+          <!-- DROP DOWN DOCTOR SELECTOR DROP DOWN DOCTOR SELECTOR  -->
+          <div ng-show="$ctrl.showDropdown" class="btn-group">
+
+              <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-xs">
+                  Select Doctor
+                  <span class="caret"> </span>
               </button>
-                <!-- NG-REPEAT -->
-                <ul  class="dropdown-menu">
-                  <div  ng-repeat="name in $ctrl.data" >
+
+              <!-- NG-REPEAT -->
+              <ul class="dropdown-menu">
+                <div ng-repeat="name in $ctrl.data">
+                  <li>
+                    <div class="form-check">
+                      <input ng-model="$ctrl.doctor.id" class="form-check-input" type="radio" name="exampleRadios" value="{{name.id}}">
+                      <label class="form-check-label" for="exampleRadios1">Dr. {{name.last_name}}</label>
+                    </div>
                     <li>
-                      <div class="form-check">
-                        <input ng-model="$ctrl.doctor.id" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="{{name.id}}">
-                        <label class="form-check-label" for="exampleRadios1">Dr. {{name.last_name}}</label>
-                      </div>
-                    <li>
-                  </div>
-                </ul>
-            </div>
+                </div>
+              </ul>
+
           </div>
+        </div>
         <!-- {{$ctrl.data[0].last_name}} -->
         <!-- </div> -->
-      </br>
+        </br>
 
         <div class="input-group">
-           <span class="input-group-addon">First Name</span>
-           <input ng-model="$ctrl.users.first_name" id="first_name" class="form-control" placeholder="Enter First Name" required/>
+          <span class="input-group-addon">First Name</span>
+          <input ng-model="$ctrl.users.first_name"  class="form-control" type="text" placeholder="Enter First Name" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Last Name</span>
-           <input ng-model="$ctrl.users.last_name" id="last_name" class="form-control" placeholder="Enter Last Name" required/>
+          <span class="input-group-addon">Last Name</span>
+          <input ng-model="$ctrl.users.last_name"  class="form-control" type="text"  placeholder="Enter Last Name" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Email</span>
-           <input ng-model="$ctrl.users.email" id="email" class="form-control" placeholder="Valid email format is example@domain.com" required/>
+          <span class="input-group-addon">Email</span>
+          <input ng-model="$ctrl.users.email"  class="form-control" type="email" placeholder="Valid email format is example@domain.com" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Phone</span>
-           <input ng-model="$ctrl.users.phone" id="phone" class="form-control" placeholder="Enter Phone Number" required/>
+          <span class="input-group-addon">Phone</span>
+          <input ng-model="$ctrl.users.phone"  class="form-control" type="number" placeholder="Enter Phone Number" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Image URL</span>
-           <input ng-model="$ctrl.users.img" id="img" class="form-control" placeholder="Enter Image URL" required/>
+          <span class="input-group-addon">Image URL</span>
+          <input ng-model="$ctrl.users.img"  class="form-control" placeholder="Enter Image URL" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Password</span>
-           <input ng-model="$ctrl.users.password" id="password" class="form-control" placeholder="Enter Password" required/>
+          <span class="input-group-addon">Password</span>
+          <input ng-model="$ctrl.users.password"  class="form-control" type="password" placeholder="Enter Password" required/>
         </div>
-          </br>
+        </br>
         <div class="input-group">
-           <span class="input-group-addon">Confirm Password</span>
-           <input ng-model="$ctrl.users.password" id="password" class="form-control" placeholder="Re-Enter Password" required/>
+          <span class="input-group-addon">Confirm Password</span>
+          <input ng-model="$ctrl.users.password"  class="form-control" type="password" placeholder="Re-Enter Password" required/>
         </div>
 
         <div class="form-group">
-        <br>
-          <button  type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
+          <br>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Create Account</button>
         </div>
 
       </form>
