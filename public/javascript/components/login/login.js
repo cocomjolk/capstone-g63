@@ -1,6 +1,6 @@
 (function() {
   angular.module('app').component('login', {
-    controller: function($http) {
+    controller: function($http, $state) {
       // console.log('this is the controller for the login view');
       const vm = this
 
@@ -47,6 +47,10 @@
         vm.goBack = false;
       }
 
+      vm.navigate = function () {
+        $state.go('patient-view')
+      }
+
       // NEED TO INCORPORATE WITH AUTH/BCRYPT
       vm.logIn = function() {
         vm.showButtonSignIn = true;
@@ -55,15 +59,27 @@
         vm.showFormNewAccount = false;
         vm.goBack = false;
         if (vm.users.patientBox) {
-          console.log(vm.users);
-          delete vm.users
-        } else if (vm.users.doctorBox) {
-          console.log(vm.users);
-          delete vm.users
-        } else if (vm.users.patientBox === vm.users.doctorBox) {
-          console.log('check one box');
+          $http({
+            method: 'GET',
+            url: '/api/users/email',
+            params: {
+              email: vm.user.email
+            }
+          }).then(function(res) {
+            //prints user info from "users" db
+            console.log(res);
+            console.log(res.data.first_name);
+            if( res.data.password === vm.user.password){
+              console.log('passwords match');
+              //got to user page
+              //link to user page passing user id
+              vm.navigate()
+              }
+            })
+          }
+          function errorCallback(response) {}
         }
-      }
+
 
       vm.createProfile = function() {
         vm.showButtonSignIn = true;
@@ -71,17 +87,6 @@
         vm.showFormNewAccount = false;
         vm.goBack = false;
         // console.log(vm.users);
-      // vm.doctorsList = function() {
-      //   $http({
-      //     method: 'GET',
-      //     url: '/api/doctors'
-      //   }).then(function(res) {
-      //     //printing whats coming from server
-      //     console.log("All doctors json from server")
-      //     console.log(res);
-      //   }),
-      //   function errorCallback(response) {}
-      // }
         if (vm.users.patientBox) {
           console.log(vm.doctor.id);
           $http({
