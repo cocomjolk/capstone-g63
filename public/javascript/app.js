@@ -19,11 +19,17 @@
       })
       .state('doctor-view',{
         url: '/doctor-view',
-        component: 'doctorView'
+        component: 'doctorView',
+        params: {
+          user: null
+        }
       })
       .state('patient-view',{
         url: '/patient-view',
-        component: 'patientView'
+        component: 'patientView',
+        params: {
+          user: null
+        }
       })
       .state('rewards-view',{
         url: '/rewards-view',

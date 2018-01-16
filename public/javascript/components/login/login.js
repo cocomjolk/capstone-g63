@@ -47,8 +47,8 @@
         vm.goBack = false;
       }
 
-      vm.goToPatientView = function () {
-        $state.go('patient-view')
+      vm.goToPatientView = function (userData) {
+        $state.go('patient-view', {user: userData})
       }
 
       vm.goToDoctorView = function (data) {

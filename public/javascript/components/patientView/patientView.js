@@ -1,23 +1,34 @@
 (function(){
   angular.module('app').component('patientView', {
-    controller:function($http, $state){
-      
+    controller:function($http, $stateParams){
+
       const vm = this
 
+      //ALL USER INFO COMING FROM $stateParams from login.js
+      let user = $stateParams.user
+
+      vm.first_name = user.first_name
+      vm.img = user.img
+      vm.points = user.points
+
+      console.log(user.first_name);
+      console.log(user.last_name);
+      console.log('points:');
+      console.log(user.points);
+      console.log('Doctor id:');
+      console.log(user.doctor_id);
+
       vm.$onInit = () => {
-          //get patient id form somewhere so GET route
-          //knows which patient is logged in.
+          //dont need user info GET request
           $http({
             method: 'GET',
             url: '/api/users/id',
             params: {
-              id: 1
+              id: user.id
             }
           }).then(function(res) {
-            vm.first_name = res.data.first_name
-            vm.points = res.data.points
-            vm.img = res.data.img
-            console.log('user data:');
+            //console.log('user data:');
+            console.log('from first http GET request ');
             console.log(res);
             $http({
               method: 'GET',
