@@ -1,6 +1,7 @@
 (function(){
   angular.module('app').component('patientView', {
     controller:function($http, $state){
+      
       const vm = this
 
       vm.$onInit = () => {

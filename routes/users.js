@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   })
 });
 
-//USER GET USER INFORMATION WITH USER ID
+//USER GET USER WITH USER ID
 router.get('/id', (req, res) => {
   console.log(req.query.id)
   knex('users')
@@ -35,6 +35,16 @@ router.get('/id', (req, res) => {
   .then((user) => {
     res.status(200).json(user);
   });
+});
+
+//USER GET ALL USERS WITH DOCTOR ID
+router.get('/doctor_id', (req, res) => {
+  console.log(req.query.doctor_id)
+  knex('users')
+  .where({doctor_id: req.query.doctor_id})
+  .then((users) => {
+    res.status(200).json(users);
+  })
 });
 
 //USER GET USER INFORMATION WITH USER EMAIL

@@ -2,98 +2,81 @@
 <!-- Patient View Patient View Patient View Patient View Patient View  -->
 <!-- Patient View Patient View Patient View Patient View Patient View  -->
 
-<div class="container">
-  <div class="row">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-main">
+    <a class="navbar-brand" ui-sref='login'>Recovery Plus</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<!-- NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBARNAVBAR -->
-    <nav class="navbar navbar-default" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
+    <ul class="navbar-nav mr-auto">
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-          <li><a ui-sref='login'>Home</a></li>
-          <li><a ui-sref='login'>Log Out</a></li>
+        <li class="nav-item">
+          <a class="nav-link" ui-sref='doctor-view'>doctorView   </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" ui-sref='rewards-view'>rewardsView </a>
+        </li>
+        <li class="nav-item">
+          <a ui-sref='page-two' class="nav-link">Page 2 </a>
+        </li>
+        <li class="nav-item">
+          <a ui-sref='login' class="nav-link">Log Out </a>
+        </li>
 
-        </ul>
-      </div>
-    </nav>
+    </ul>
 
-    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
-      <div class="customDiv">
-      </div>
-    </div>
+  </div>
+</nav>
 
-<!-- CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV CONTENT DIV -->
-    <div class="col-xs-10 col-sm-8 col-md-6 col-lg-6">
-      <div class="customDiv">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
 
+          <div class="col-3">col-3</div>
 
+          <div class="col-6">
 
+              <h1 class="display-4">Hi {{$ctrl.first_name}}</h1>
+              <img ng-src="{{$ctrl.img}}" class="rounded-circle img-fluid" alt="User image">
+              <hr class="my-4">
+              <h3>{{$ctrl.points}} points</h3>
 
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-      <h1>Hi {{$ctrl.first_name}}</h1>
-      <img ng-src="{{$ctrl.img}}" class="img-circle center-block img-responsive" alt="User image">
-      <h3>{{$ctrl.points}} points</h3>
-
-        <!-- <div class="center-block">
-        </div> -->
-      <!-- <a class="btn btn-primary" ng-click="$ctrl.signIn()" ng-show="$ctrl.showButtonSignIn">Take Video</a> -->
-      <!-- <div class="btn-group"> -->
-          <div class="btn-group">
-              <button type="button" class="btn btn-primary btn-lg btn-block">Record Video</button>
-          </div>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
-          </div>
-          <!-- <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Points</button>
-          </div>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg btn-block">Earn</button>
-          </div> -->
-        </br>
-        </br>
-      <!-- </div> -->
-
-
-<!-- LIST OF REWARDS FROM DOCTOR | orderBy: sortPosts -->
-      <div ng-repeat='reward in $ctrl.data' class="row" ng-show='true'>
-            <div class="well">
-              <div class="media-left">
-                <img ng-src="{{reward.img}" class="img-fluid" alt="Responsive image">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-primary btn-lg btn-block">Record Video</button>
               </div>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  {{reward.reward_name}}
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">{{reward.reward_points}} Points</button>
-                  </div>
-                </h4>
-
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Rewards</button>
               </div>
+
+
             </div>
-          </div>
-
-        </div>
 
 
-      </div>
+          <div class="col-3">col-3</div>
+
     </div>
+  </div>
+</div>
 
-    <div class="col-xs-1 col-sm-2 col-md-3 col-lg-3">
-      <div class="customDiv">
+
+<!-- <div class="jumbotron"> -->
+<div class="container">
+  <div class="">
+
+    <!-- LIST OF REWARDS FROM DOCTOR | orderBy: sortPosts -->
+    <div ng-repeat='reward in $ctrl.data' class="row" ng-show='true'>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{reward.img}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{reward.reward_name}}</h5>
+          <p class="card-text">need to add a comment section in the db.</p>
+          <a  ng-click="" class="btn btn-primary">{{reward.reward_points}} Points</a>
+        </div>
       </div>
     </div>
 
   </div>
 </div>
+
+<!-- </div> -->

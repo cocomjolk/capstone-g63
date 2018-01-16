@@ -21,7 +21,19 @@ router.get('/', (req, res) => {
   })
 });
 
-//USER GET USER INFORMATION WITH USER EMAIL
+//DOCTOR GET DOCTOR INFORMATION WITH DOCTOR_ID
+router.get('/id', (req, res) => {
+  console.log(req.query.id)
+  knex('doctors')
+  .where({id: req.query.id})
+  //need first() to prevent from returning array
+  .first()
+  .then((doctor) => {
+    res.status(200).json(doctor);
+  });
+});
+
+//USER GET DOCTOR INFORMATION WITH DOCTOR EMAIL
 router.get('/email', (req, res) => {
   console.log(req.query)
   knex('doctors')

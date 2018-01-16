@@ -32,6 +32,17 @@ function controller($state) {
 }
 
 //*****************************************************************************
+$http({
+  method: 'GET',
+  url: '/api/rewards',
+  params: {
+    propertyName: 1
+  }
+}).then(function(res) {
+  }),
+    function errorCallback(res) {}
+
+//*****************************************************************************
 
 (function() {
   'use strict'
@@ -71,52 +82,3 @@ function controller($state) {
 
 }());
 //****************************************************************
-controller.$inject = ['$http']
-  function controller($http) {
-    const vm = this
-
-    vm.$onInit = onInit
-    vm.addExpense = addExpense
-    vm.deleteExpense = deleteExpense
-    vm.editExpense = editExpense
-    vm.updateExpense = updateExpense
-
-    function onInit() {
-      $http.get('/api/expenses').then(function (response) {
-        vm.expenses = response.data
-      })
-    }
-
-    function addExpense() {
-      $http.post('/api/expenses', vm.expense)
-        .then(function (response) {
-          vm.expenses.push(response.data)
-          delete vm.expense
-        })
-    }
-
-    function updateExpense() {
-      $http.patch(`/api/expenses/${vm.editingExpense.id}`, vm.editingExpense)
-        .then(function (response) {
-          const expense = response.data
-          const originalExpense = vm.expenses.find(e => e.id == expense.id)
-          Object.assign(originalExpense, expense)
-          delete vm.editingExpense
-        })
-    }
-
-    function deleteExpense(e, expense) {
-      e.preventDefault()
-      $http.delete(`/api/expenses/${expense.id}`)
-        .then(function () {
-          vm.expenses.splice(vm.expenses.indexOf(expense))
-        })
-    }
-
-    function editExpense(e, expense) {
-      e.preventDefault()
-      vm.editingExpense = angular.copy(expense)
-    }
-  }
-
-}());
