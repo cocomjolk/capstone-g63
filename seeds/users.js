@@ -21,16 +21,16 @@ exports.seed = function(knex, Promise) {
             phone: '5127487651',
             points: '100',
             doctor_id: 2,
-            img: 'https://fsmedia.imgix.net/44/13/42/4e/4fbc/410d/8b23/2e0998d75cbd/benedict-cumberbatch-as-doctor-strange-possessing-the-eye-of-agomotto-marvel.jpeg'
+            img: 'http://cdn-static.denofgeek.com/sites/denofgeek/files/2018/01/vader-main.jpg'
           },
-          { first_name: 'George',
-            last_name: 'Washington',
+          { first_name: 'Robocop',
+            last_name: 'Murphey',
             password: 'password3',
-            email: 'george@gmail.com',
+            email: 'robocop@gmail.com',
             phone: '5127487651',
             points: '10000',
             doctor_id: 1,
-            img: 'https://media1.britannica.com/eb-media/95/4995-004-45F5BF39.jpg'
+            img: 'https://cdn.pastemagazine.com/www/articles/RoboCop%20Poster%20Main.jpg'
           },
           { first_name: 'Michael',
             last_name: 'Quiroz',
@@ -38,8 +38,8 @@ exports.seed = function(knex, Promise) {
             email: 'cocomjolk@hotmail.com',
             phone: '5127487651',
             points: '10000',
-            doctor_id: 3,
-            img: 'https://media1.britannica.com/eb-media/95/4995-004-45F5BF39.jpg'
+            doctor_id: 2,
+            img: 'https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/16194894_10153989588431580_8147888634389679382_n.jpg?oh=b47a48a82b32b7e1a23a56127a4d8366&oe=5AED2726'
           },
           { first_name: 'Harry',
             last_name: 'Henderson',
@@ -47,7 +47,7 @@ exports.seed = function(knex, Promise) {
             email: 'harry@gmail.com',
             phone: '5127487651',
             points: '10',
-            doctor_id: 2,
+            doctor_id: 1,
             img: 'https://memegenerator.net/img/images/600x600/15088116/harry-henderson.jpg'
           }
 

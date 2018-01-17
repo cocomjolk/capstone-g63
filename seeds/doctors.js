@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
           email: 'evil@gmail.com',
           phone: '5127487651',
           location: 'Austin',
-          img: 'https://s3-media3.fl.yelpcdn.com/bphoto/c-mJLLC5VOCRWxjZllP7Mw/ls.jpg'
+          img: 'https://i.imgur.com/U0F0vK4.jpg'
         },
         { first_name: 'Stephen',
           last_name: 'Strange',

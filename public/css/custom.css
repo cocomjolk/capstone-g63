@@ -1,20 +1,3 @@
-.customDiv {
-    margin:1px;
-    min-height:300px;
-    background-color:silver;
-    text-align: center;
-    font-size: large;
-}
-
-.rounded-circle {
-    max-height: 10rem;
-}
-
-/*.well {
-  width: 100px;
-  height: 100px;
-}*/
-
 html,
 body {
   height: 100%
@@ -34,4 +17,72 @@ body {
 
 #cover-caption {
   width: 100%;
+}
+
+#docBackground {
+
+}
+
+#docProfile {
+  width: 100%;
+  text-align: center;
+  background: silver;
+  margin-bottom: 5px;
+
+}
+
+#userContent{
+  width: 100%;
+  text-align: center;
+  background: MediumSeaGreen;
+}
+
+.card {
+  margin: 0 auto;
+  float: none;
+  margin-top: 10px;
+}
+
+.rewardForm {
+  /*width: 100%;*/
+  /*text-align: center;*/
+}
+
+
+.patientList {
+  width: 100%;
+  text-align: center;
+  background: silver;
+}
+
+/*used for column layout*/
+.customDiv {
+    margin:1px;
+    min-height:300px;
+    background-color:silver;
+    text-align: center;
+    font-size: large;
+}
+
+.rounded-circle {
+    max-height: 10rem;
+}
+
+.docBox {
+  /*text-align: center;
+  background: silver;
+  background-size: cover;*/
+  margin-bottom: 10px;
+}
+
+.card .media-left img {
+max-width: initial;
+}
+
+.card-img-left {
+  border-bottom-left-radius: calc(.25rem - 1px);
+  border-top-left-radius: calc(.25rem - 1px);
+  float: left;
+  padding-right: 1em;
+  margin-bottom: -1.25em;
 }

@@ -1,8 +1,10 @@
 (function() {
   angular.module('app').component('login', {
-    controller: function($http, $state) {
+    controller: function($http, $state, $stateParams) {
       // console.log('this is the controller for the login view');
       const vm = this
+
+      vm.stateParams = $stateParams
 
       vm.showButtonSignIn = true;
       vm.showButtonNewAccount = true;
@@ -51,18 +53,13 @@
         $state.go('patient-view', {user: userData})
       }
 
-      vm.goToDoctorView = function (data) {
-        console.log(data);
-        $state.go('doctor-view', data)
+      vm.goToDoctorView = function (userData) {
+        $state.go('doctor-view', {user: userData})
       }
 
       // NEED TO INCORPORATE WITH AUTH/BCRYPT
       vm.logIn = function() {
-        vm.showButtonSignIn = true;
-        vm.showButtonNewAccount = true;
-        vm.showFormSignIn = false;
-        vm.showFormNewAccount = false;
-        vm.goBack = false;
+
         if (vm.users.patientBox) {
           $http({
             method: 'GET',
@@ -71,19 +68,19 @@
               email: vm.user.email
             }
           }).then(function(res) {
-            //prints user info from "users" db
-            res.data.id// console.log(res);
-            // console.log(res.data.first_name);
-            if( res.data.password === vm.user.password){
-              console.log('passwords match');
-              //got to user page
-              //link to user page passing user id
-              console.log(res.data.id);
-              vm.goToPatientView(res.data)
-            } else {
-              console.log('invalid email')
-              vm.invalidEmail = "Invalid Email or Password"
-            }
+              if( res.data.password === vm.user.password){
+                console.log('passwords match');
+                vm.showButtonSignIn = true;
+                vm.showButtonNewAccount = true;
+                vm.showFormSignIn = false;
+                vm.showFormNewAccount = false;
+                vm.goBack = false;
+                //link to user page using user info from res.data
+                vm.goToPatientView(res.data)
+              } else {
+                console.log('invalid email')
+                vm.showAlert = true;
+              }
           })
 
           } else if (vm.users.doctorBox) {
@@ -94,17 +91,18 @@
                 email: vm.user.email
               }
             }).then(function(res) {
-              //prints doctor info from "doctors" db
-              console.log(res);
-              console.log('Dr. ' + res.data.last_name);
               if( res.data.password === vm.user.password){
                 console.log('passwords match');
-                //got to user page
-                //link to user page passing user id
-                vm.goToDoctorView()
+                vm.showButtonSignIn = true;
+                vm.showButtonNewAccount = true;
+                vm.showFormSignIn = false;
+                vm.showFormNewAccount = false;
+                vm.goBack = false;
+                //link to user page using user info from res.data
+                vm.goToDoctorView(res.data)
                 } else {
                   console.log('invalid email')
-                  vm.invalidEmail = "Invalid Email or Password"
+                  vm.showAlert = true
                 }
               })
             }

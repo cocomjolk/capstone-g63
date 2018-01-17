@@ -11,11 +11,17 @@
       $stateProvider
       .state('login',{
         url: '/',
-        component: 'login'
+        component: 'login',
+        params: {
+          user: null
+        }
       })
       .state('page-two',{
         url: '/page-two',
-        component: 'pageTwo'
+        component: 'pageTwo',
+        params: {
+          user: null
+        }
       })
       .state('doctor-view',{
         url: '/doctor-view',
@@ -33,7 +39,10 @@
       })
       .state('rewards-view',{
         url: '/rewards-view',
-        component: 'rewardsView'
+        component: 'rewardsView',
+        params: {
+          user: null
+        }
       })
     }
 
