@@ -35,6 +35,39 @@ router.post('/verify', (req,res)=>{
   }
 })
 
+//USER VERIFY PASSWORD WITH USER EMAIL
+router.post('/email', (req, res) => {
+  //log in terminal
+  console.log(req.body);
+  //get email from login.js
+  knex('doctors')
+  //find user by email
+  .where({email: req.body.email})
+  //need first() to prevent from returning array
+  .first()
+  //user info passed to .then
+  .then((user) => {
+    console.log(user.password);
+    bcrypt.compare(req.body.password, user.password)
+    .then(function(result) {
+      if (result == true){
+        console.log('passwords match');
+        const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
+        res.status(201).json({
+          id: user.id,
+          first_name: user.first_name,
+          points: user.points,
+          img: user.img,
+          token: token
+        });
+      } else {
+        console.log('failed');
+        res.send('fail')
+      }
+    })
+  })
+});
+
 //DOCTOR CREATE A RECORD
 router.post('/', (req, res) => {
   // check for duplicate emails first

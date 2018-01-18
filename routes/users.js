@@ -138,6 +138,7 @@ router.get('/doctor_id', (req, res) => {
 //USER VERIFY PASSWORD WITH USER EMAIL
 router.post('/email', (req, res) => {
   //log in terminal
+  console.log(req);
   //get email from login.js
   knex('users')
   //find user by email

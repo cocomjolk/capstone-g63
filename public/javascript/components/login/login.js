@@ -52,7 +52,6 @@
 
         if (vm.users.patientBox) {
           console.log(vm.user);
-
           //Verify user with email and password. bcrypt in route.
           $http({
             method: 'POST',
@@ -76,27 +75,26 @@
               }
             })
 
-
           } else if (vm.users.doctorBox) {
             $http({
-              method: 'GET',
+              method: 'POST',
               url: '/api/doctors/email',
-              params: {
-                email: vm.user.email
-              }
+              data: vm.user
+
             }).then(function(res) {
-              if( res.data.password === vm.user.password){
-                console.log('passwords match');
-                vm.showButtonSignIn = true;
-                vm.showButtonNewAccount = true;
-                vm.showFormSignIn = false;
-                vm.showFormNewAccount = false;
-                vm.goBack = false;
-                //link to user page using user info from res.data
-                vm.goToDoctorView(res.data)
+              console.log(res.data);
+                if( res.data !== 'fail'){
+                  console.log('passwords match');
+                  vm.showButtonSignIn = true;
+                  vm.showButtonNewAccount = true;
+                  vm.showFormSignIn = false;
+                  vm.showFormNewAccount = false;
+                  vm.goBack = false;
+                  $window.localStorage.setItem('token', res.data.token);
+                  $state.go('doctor-view')
                 } else {
                   console.log('invalid email')
-                  vm.showAlert = true
+                  vm.showAlert = true;
                 }
               })
             }
