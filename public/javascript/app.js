@@ -15,9 +15,9 @@
         resolve: {
           signedIn: function($window, $state, $http){
             // console.log('delete token');
-            // console.log($window.localStorage.getItem('token'));
+            console.log($window.localStorage.getItem('token'));
             $window.localStorage.removeItem('token')
-            // console.log('deleted');
+            console.log('deleted');
               return;
           }
         },
@@ -60,15 +60,15 @@
             $http.post('/api/users/verify', {token: token})
               .then( response => {
                 if (response.data !== "fail") {
-                  console.log('from .state("patient-view")');
-                  console.log(response);
+                  // console.log('from .state("patient-view")');
+                  // console.log(response);
                   $window.localStorage.setItem('user', JSON.stringify(response.data))
                 } else {
                   $state.go('login')
                 }
               })
           }
-        },
+        }
       })
       .state('rewards-view',{
         url: '/rewards-view',

@@ -7,22 +7,22 @@ const knex = require('../db/knex');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-
+// VERIFY USER
 router.post('/verify', (req,res)=>{
   try {
     let decoded = jwt.verify(req.body.token, "SUPER SECRET")
     // look up id in your db
     let id = decoded.id
-    //query db to send doctor info in the response
+    //query db to send user info in the response
     knex('users')
     .where({id: id})
     .then( result => {
-        console.log('result',result);
         let user = result[0];
 
         res.json({
             first_name: user.first_name,
             last_name: user.last_name,
+            doctor_id: user.doctor_id,
             email: user.email,
             phone: user.phone,
             img: user.img,
@@ -35,14 +35,73 @@ router.post('/verify', (req,res)=>{
   }
 })
 
+// VERIFY PASSWORD
+// router.post('/password', (req,res)=>{
+//   try {
+//
+//     bcrypt.hash(req.body.password, 12)
+//         .then( hashed_pass => {
+//     let decoded = jwt.verify(req.body.token, "SUPER SECRET")
+//     // look up id in your db
+//     let id = decoded.id
+//     //query db to send user info in the response
+//     knex('users')
+//     .where({id: id})
+//     .then( result => {
+//         let user = result[0];
+//
+//         res.json({
+//             first_name: user.first_name,
+//             last_name: user.last_name,
+//             doctor_id: user.doctor_id,
+//             email: user.email,
+//             phone: user.phone,
+//             img: user.img,
+//             id: user.id
+//         })
+//       })
+//
+//   } catch(err) {
+//     res.send('fail')
+//   }
+// })
+
 // USER CREATE RECORD
 router.post('/', (req, res) => {
-  knex('users')
-  .insert(req.body)
-  .returning('*')
-  .then((user) => {
-    res.status(201).json(user);
-  });
+  // check for duplicate emails first
+  // hash the password
+  bcrypt.hash(req.body.password, 12)
+      .then( hashed_pass => {
+        knex('users')
+        .insert({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            password: hashed_pass,
+            email: req.body.email,
+            phone: req.body.phone,
+            points: req.body.points,
+            doctor_id: req.body.doctor_id,
+            img: req.body.img
+        })
+        //returning doctor id from post for token
+        .returning('*')
+        .then((data) => {
+          // create a token and send it
+          let user = data[0];
+          //Use doctor ID to verify token later
+          const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
+          console.log( 'coming from post route');
+          //console.log(doctor);
+          res.status(201).json({
+            id: user.id,
+            first_name: user.first_name,
+            phone: user.phone,
+            points: user.points,
+            img: user.img,
+            token: token
+          });
+        });
+      })
 })
 
 // USERS GET ALL
@@ -76,18 +135,36 @@ router.get('/doctor_id', (req, res) => {
   })
 });
 
-//USER GET USER INFORMATION WITH USER EMAIL
-router.get('/email', (req, res) => {
-  console.log(req.query.email)
+//USER VERIFY PASSWORD WITH USER EMAIL
+router.post('/email', (req, res) => {
+  //log in terminal
+  //get email from login.js
   knex('users')
-  .where({email: req.query.email})
+  //find user by email
+  .where({email: req.body.email})
   //need first() to prevent from returning array
   .first()
+  //user info passed to .then
   .then((user) => {
-    res.status(200).json(user);
-  });
+    bcrypt.compare(req.body.password, user.password)
+    .then(function(result) {
+      if (result == true){
+        console.log('passwords match');
+        const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
+        res.status(201).json({
+          id: user.id,
+          first_name: user.first_name,
+          points: user.points,
+          img: user.img,
+          token: token
+        });
+      } else {
+        console.log('failed');
+        res.send('fail')
+      }
+    })
+  })
 });
-
 //USERS EDIT
 // router.get('/:id/edit', function(req, res){
 //   knex('users')

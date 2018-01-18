@@ -33,10 +33,7 @@
           method: 'GET',
           url: '/api/doctors'
         }).then(function(res) {
-          //printing whats coming from server
-          // console.log("All doctors json from server")
-          // console.log(res.data);
-          // vm.drRios = res.data[0].last_name
+          //used by ng-repeat
           vm.data = res.data
         }),
         function errorCallback(response) {}
@@ -50,35 +47,35 @@
         vm.goBack = false;
       }
 
-      vm.goToPatientView = function (userData) {
-        $state.go('patient-view', {user: userData})
-      }
-
-      // NEED TO INCORPORATE WITH AUTH/BCRYPT
+// LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
       vm.logIn = function() {
 
         if (vm.users.patientBox) {
+          console.log(vm.user);
+
+          //Verify user with email and password. bcrypt in route.
           $http({
-            method: 'GET',
+            method: 'POST',
             url: '/api/users/email',
-            params: {
-              email: vm.user.email
-            }
+            data: vm.user
+
           }).then(function(res) {
-              if( res.data.password === vm.user.password){
+            console.log(res.data);
+              if( res.data !== 'fail'){
                 console.log('passwords match');
                 vm.showButtonSignIn = true;
                 vm.showButtonNewAccount = true;
                 vm.showFormSignIn = false;
                 vm.showFormNewAccount = false;
                 vm.goBack = false;
-                //link to user page using user info from res.data
-                vm.goToPatientView(res.data)
+                $window.localStorage.setItem('token', res.data.token);
+                $state.go('patient-view')
               } else {
                 console.log('invalid email')
                 vm.showAlert = true;
               }
-          })
+            })
+
 
           } else if (vm.users.doctorBox) {
             $http({
@@ -106,7 +103,7 @@
           function errorCallback(response) {}
         }
 
-
+//CREATING PROFILE CREATING PROFILE CREATING PROFILE CREATING PROFILE
       vm.createProfile = function() {
         vm.showButtonSignIn = true;
         vm.showButtonNewAccount = true;
