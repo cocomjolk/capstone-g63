@@ -1,6 +1,6 @@
 (function() {
   angular.module('app').component('login', {
-    controller: function($http, $state, $stateParams) {
+    controller: function($http, $state, $stateParams, $window) {
       // console.log('this is the controller for the login view');
       const vm = this
 
@@ -27,6 +27,7 @@
         vm.showFormSignIn = false;
         vm.showFormNewAccount = true;
         vm.goBack = true;
+
         // GETS DOCTORS TO FILL DROP DOWN LIST
         $http({
           method: 'GET',
@@ -51,10 +52,6 @@
 
       vm.goToPatientView = function (userData) {
         $state.go('patient-view', {user: userData})
-      }
-
-      vm.goToDoctorView = function (userData) {
-        $state.go('doctor-view', {user: userData})
       }
 
       // NEED TO INCORPORATE WITH AUTH/BCRYPT
@@ -113,14 +110,12 @@
       vm.createProfile = function() {
         vm.showButtonSignIn = true;
         vm.showButtonNewAccount = true;
-
         vm.goBack = false;
-        // console.log(vm.users);
         if (vm.users.patientBox) {
-          if(!vm.doctor.id){
+          if(vm.doctor == undefined){
+            vm.alert = true;
             console.log('Choose a doctor option');
           }
-          console.log(vm.doctor.id);
           $http({
             method: 'POST',
             url: '/api/users',
@@ -135,14 +130,15 @@
               img: vm.users.img
             }
           }).then(function(res) {
-            //printing whats coming from server
-            // console.log("patient json from server")
-            console.log(res);
+            // store token from POST route
+            $window.localStorage.setItem('token', res.data.token);
             delete vm.users
+            $state.go('patient-view')
           }),
           function errorCallback(response) {}
         }
         else if (vm.users.doctorBox) {
+          // console.log(vm.users);
           $http({
             method: 'POST',
             url: '/api/doctors',
@@ -154,11 +150,13 @@
               phone: vm.users.phone,
               img: vm.users.img
             }
+            //res coming from POST route
           }).then(function(res) {
-            //printing whats coming from server
-            console.log("docotr json from server")
-            console.log(res);
+            // store token from POST route
+            $window.localStorage.setItem('token', res.data.token);
+            //clear form
             delete vm.users
+            $state.go('doctor-view')
           }),
           function errorCallback(response) {}
         }
@@ -166,7 +164,7 @@
       }
 
     },
-    templateUrl: "javascript/components/login/template.html"
+    templateUrl: "javascript/components/login/login.html"
 
   })
 })()

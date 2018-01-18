@@ -1,10 +1,39 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('../db/knex');
 // USER USER USER USER USER USER USER USER USER USER USER USER
 // USER USER USER USER USER USER USER USER USER USER USER USER
 // USER USER USER USER USER USER USER USER USER USER USER USER
+const express = require('express');
+const router = express.Router();
+const knex = require('../db/knex');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
+
+router.post('/verify', (req,res)=>{
+  try {
+    let decoded = jwt.verify(req.body.token, "SUPER SECRET")
+    // look up id in your db
+    let id = decoded.id
+    //query db to send doctor info in the response
+    knex('users')
+    .where({id: id})
+    .then( result => {
+        console.log('result',result);
+        let user = result[0];
+
+        res.json({
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            phone: user.phone,
+            img: user.img,
+            id: user.id
+        })
+      })
+
+  } catch(err) {
+    res.send('fail')
+  }
+})
 
 // USER CREATE RECORD
 router.post('/', (req, res) => {

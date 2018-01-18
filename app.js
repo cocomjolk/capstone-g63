@@ -2,10 +2,12 @@ const PORT = process.env.PORT || 8080;
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 //used so everything in public folder like javascript/app.js is not treated as a route
 //static assets
 app.use(express.static('public'))

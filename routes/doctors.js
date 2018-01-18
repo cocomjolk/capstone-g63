@@ -1,15 +1,75 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('../db/knex');
+// DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES
+// DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES
+// DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES DOCTOR ROUTES
+const express = require('express');
+const router = express.Router();
+const knex = require('../db/knex');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+// VERIFY TOKEN FOR DOCTOR
+router.post('/verify', (req,res)=>{
+  try {
+    let decoded = jwt.verify(req.body.token, "SUPER SECRET")
+    // look up id in your db
+    let id = decoded.id
+    //query db to send doctor info in the response
+    knex('doctors')
+    .where({id: id})
+    .then( result => {
+        console.log('result',result);
+        let doctor = result[0];
+
+        res.json({
+            first_name: doctor.first_name,
+            last_name: doctor.last_name,
+            email: doctor.email,
+            phone: doctor.phone,
+            img: doctor.img,
+            id: doctor.id
+        })
+      })
+
+  } catch(err) {
+    res.send('fail')
+  }
+})
 
 //DOCTOR CREATE A RECORD
 router.post('/', (req, res) => {
-  knex('doctors')
-  .insert(req.body)
-  .returning('*')
-  .then((doctor) => {
-    res.status(201).json(doctor);
-  });
+  // check for duplicate emails first
+  // hash the password
+  bcrypt.hash(req.body.password, 12)
+      .then( hashed_pass => {
+        knex('doctors')
+        .insert({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            password: hashed_pass,
+            email: req.body.email,
+            phone: req.body.phone,
+            img: req.body.img
+        })
+        //returning doctor id from post for token
+        .returning('*')
+        .then((data) => {
+          // create a token and send it
+          let doctor = data[0];
+          //Use doctor ID to verify token later
+          const token = jwt.sign({ type: "doctor", id: doctor.id}, "SUPER SECRET")
+          console.log( 'coming from post route');
+          //console.log(doctor);
+          res.status(201).json({
+            id: doctor.id,
+            email: doctor.email,
+            first_name: doctor.first_name,
+            last_name: doctor.last_name,
+            phone: doctor.phone,
+            img: doctor.img,
+            token: token
+          });
+        });
+      })
 })
 
 //DOCTOR GET ALL RECORDS
