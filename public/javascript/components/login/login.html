@@ -145,15 +145,25 @@
           <div class="input-group">
             <input ng-model="$ctrl.users.phone"  class="form-control" type="number" placeholder="Phone Number" required/>
           </div>
-          </br>
-          <div class="input-group">
+          <!-- </br> -->
+          <!-- ng-file-upload -->
+          <!-- <input name="file" type="file" class="file-upload" data-cloudinary-field="image_id"
+           data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"/> -->
+
+          <!-- <div class="input-group">
             <input ng-model="$ctrl.users.img"  class="form-control" placeholder="Image URL" required/>
-          </div>
+          </div> -->
           </br>
           <div class="input-group">
             <input ng-model="$ctrl.users.password"  class="form-control" type="password" placeholder="Enter Password" required/>
-          </div>
           </br>
+          </div>
+          <!-- <form> -->
+          <div class="input-group">
+            <label for="exampleFormControlFile1">something</label>
+            <input ng-submit="$ctrl.couldinaryFile" type="file" class="form-control-file" id="exampleFormControlFile1">
+          </div>
+          <!-- </form> -->
           <div class="form-group">
             <br>
             <button type="submit" class="btn btn-success btn-lg btn-block">Create Account</button>
@@ -162,7 +172,7 @@
           <div  ng-show="$ctrl.alert" class="alert alert-danger" role="alert">
             Please Select a Doctor From the Dropdown
           </div>
-
+      <!-- sdc -->
       </form>
     </div>
   </div>
