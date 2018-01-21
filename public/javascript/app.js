@@ -17,6 +17,9 @@
             // console.log('delete token');
             console.log($window.localStorage.getItem('token'));
             $window.localStorage.removeItem('token')
+            $window.localStorage.removeItem('doctor')
+            $window.localStorage.removeItem('img_url')
+            $window.localStorage.removeItem('user')
             console.log('deleted');
               return;
           }
@@ -42,7 +45,7 @@
               .then( response => {
                 if (response.data !== "fail") {
                   console.log('from .state("doctor-view")');
-                  console.log(response);
+                  console.log(response.data);
                   $window.localStorage.setItem('doctor', JSON.stringify(response.data))
                 } else {
                   $state.go('login')
@@ -57,12 +60,17 @@
         resolve: {
           signedIn: function($window, $state, $http){
             let token = $window.localStorage.getItem('token')
+            //goes to verify users route.
             $http.post('/api/users/verify', {token: token})
               .then( response => {
                 if (response.data !== "fail") {
+                  console.log('from .state("patient-view")');
+                  console.log(response.data);
                   // console.log('from .state("patient-view")');
                   // console.log(response);
                   $window.localStorage.setItem('user', JSON.stringify(response.data))
+
+                  console.log('testing', $window.localStorage.getItem('user'));
                 } else {
                   $state.go('login')
                 }

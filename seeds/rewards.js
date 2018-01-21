@@ -8,17 +8,32 @@ exports.seed = function(knex, Promise) {
         { reward_name: 'foam roller',
           reward_points: 100,
           doctor_id: 1,
-          img: 'https://www.bentonbetter.com/wp-content/uploads/2016/05/Roller.png'
+          reward_comment: '',
+          img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/foam_roller_vvtbgu.jpg'
         },
         { reward_name: 'massage',
-          reward_points: 600,
-          doctor_id: 1,
-          img: 'https://magnoliahotels.com/dallas-downtown/wp-content/uploads/sites/2/2017/10/11-3-1.jpg'
+          reward_points: 700,
+          doctor_id: 3,
+          reward_comment: '1 30 min. massage from Happy hands parlor',
+          img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/couples-massage-lafusion-massage-and-spa-body-couples-massage_cic6v3.jpg'
+        },
+        { reward_name: 'Massage Hook',
+          reward_points: 500,
+          doctor_id: 3,
+          reward_comment: '',
+          img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/massage_hook_dw3dox.jpg'
+        },
+        { reward_name: 'Laser Therapy',
+          reward_points: 10,
+          doctor_id: 2,
+          reward_comment: '',
+          img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516505065/sharks_with_lasers_zynm3d.jpg'
         },
         { reward_name: 'lacrosse ball',
           reward_points: 50,
-          doctor_id: 2,
-          img: 'https://www.justhersports.com/media/catalog/product/b/a/ball_yellow.jpg'
+          doctor_id: 1,
+          reward_comment: '',
+          img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/lacrosse_ball_nf36co.jpg'
         }
 
       ]);

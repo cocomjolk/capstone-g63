@@ -158,12 +158,16 @@
             <input ng-model="$ctrl.users.password"  class="form-control" type="password" placeholder="Enter Password" required/>
           </br>
           </div>
-          <!-- <form> -->
-          <div class="input-group">
-            <label for="exampleFormControlFile1">something</label>
-            <input ng-submit="$ctrl.couldinaryFile" type="file" class="form-control-file" id="exampleFormControlFile1">
+          <div class="file-upload-container">
+            <label for="file-upload">something</label>
+            <input class="file" type="file"  id="file-upload">
           </div>
-          <!-- </form> -->
+
+          <!-- <label class="file-upload-container" for="file-upload">
+            <input  type="file" style="display:none;" id="file-upload">
+            Select an Image
+            </label> -->
+
           <div class="form-group">
             <br>
             <button type="submit" class="btn btn-success btn-lg btn-block">Create Account</button>

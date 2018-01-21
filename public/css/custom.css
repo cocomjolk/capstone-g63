@@ -6,7 +6,7 @@ body {
 /* Cover */
 
 #cover {
-  background: #222 url('images/thumbsup.jpg') center center no-repeat;
+  background: #222 url('http://res.cloudinary.com/hxf6ors9y/image/upload/v1516478422/thumbsup_x6pzvg.jpg') center center no-repeat;
   background-size: cover;
   color: white;
   height: 100%;

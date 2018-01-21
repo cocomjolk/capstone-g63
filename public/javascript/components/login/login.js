@@ -1,13 +1,11 @@
 (function() {
   angular.module('app').component('login', {
     controller: function($http, $state, $window) {
-      // console.log('this is the controller for the login view');
-      const CLOUDINARY_URL ='https://api.cloudinary.com/v1_1/hxf6ors9y';
+
+      const CLOUDINARY_URL ='https://cors-anywhere.herokuapp.com/https://api.cloudinary.com/v1_1/hxf6ors9y/image/upload';
       const CLOUDINARY_UPLOAD_PRESET = 'jd099oi8';
 
       const vm = this
-
-      // vm.stateParams = $stateParams
 
       vm.showButtonSignIn = true;
       vm.showButtonNewAccount = true;
@@ -15,6 +13,14 @@
       vm.showFormNewAccount = false;
       vm.goBack = false;
       vm.showDropdown = false;
+
+      vm.formGoBack = function() {
+        vm.showButtonSignIn = true;
+        vm.showButtonNewAccount = true;
+        vm.showFormSignIn = false;
+        vm.showFormNewAccount = false;
+        vm.goBack = false;
+      }
 
       vm.signIn = function() {
         vm.showButtonSignIn = false;
@@ -24,6 +30,7 @@
         vm.goBack = true;
       }
 
+      //CREATE NEW ACCOUNT
       vm.newAccount = function() {
         vm.showButtonSignIn = false;
         vm.showButtonNewAccount = false;
@@ -40,31 +47,55 @@
           vm.data = res.data
         }),
         function errorCallback(response) {}
+        // WAIT FOR IMAGE TO BE UPLOADED
+        let fileUpload = document.getElementById('file-upload');
+        fileUpload.addEventListener('change', (event) => {
+          let file = event.target.files[0];
+          console.log(file);
+          let formData = new FormData();
+          formData.append('file', file);
+          formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+          console.log(formData);
+            axios({
+            url: CLOUDINARY_URL,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: formData
+          }).then(res => {
+            //response will contain secure_url
+            //This needs to be saved to db to grab later.
+            img_url = res.data.secure_url
+            $window.localStorage.setItem('img_url', img_url);
+            console.log('from login.js, local storage');
+            console.log($window.localStorage.img_url);
+          }).catch(err => {
+            console.error(err);
+          });
+        });
       }
 
-      vm.formGoBack = function() {
-        vm.showButtonSignIn = true;
-        vm.showButtonNewAccount = true;
-        vm.showFormSignIn = false;
-        vm.showFormNewAccount = false;
-        vm.goBack = false;
-      }
+
+
 
 // LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN LOGIN
       vm.logIn = function() {
 
         if (vm.users.patientBox) {
+          //coming from form
           console.log(vm.user);
-          //Verify user with email and password. bcrypt in route.
+          //Verify user with email and password. bcrypt in patient route.
           $http({
             method: 'POST',
             url: '/api/users/email',
             data: vm.user
 
           }).then(function(res) {
+            console.log('login.js after verify route');
             console.log(res.data);
               if( res.data !== 'fail'){
-                console.log('passwords match');
+
                 vm.showButtonSignIn = true;
                 vm.showButtonNewAccount = true;
                 vm.showFormSignIn = false;
@@ -104,34 +135,21 @@
           function errorCallback(response) {}
         }
 
-//CREATING PROFILE CREATING PROFILE CREATING PROFILE CREATING PROFILE
+//CREATING PATIENT PROFILE CREATING PATIENT PROFILE CREATING PATIENT PROFILE CREATING PROFILE
       vm.createProfile = function() {
         vm.showButtonSignIn = true;
         vm.showButtonNewAccount = true;
         vm.goBack = false;
-
-        let file = vm.cloudinaryFile;
-        console.log(file);
-        let formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
 
         if (vm.users.patientBox) {
           if(vm.doctor == undefined){
             vm.alert = true;
             console.log('Choose a doctor option');
           }
-          $http({
-            method: 'POST',
-            url: CLOUDINARY_URL,
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: formData
-          }).then(function(cloud_res) {
-            let pic = cloud_res.data
-            console.log(cloud_res);
-            img_url = cloud_res.data.secure_url
+            let img = $window.localStorage.getItem('img_url')
+            console.log('successfully got image from local storage');
+            console.log(img);
+
             $http({
               method: 'POST',
               url: '/api/users',
@@ -143,7 +161,7 @@
                 phone: vm.users.phone,
                 points: 0,
                 doctor_id: vm.doctor.id,
-                img: img_url
+                img: img
               }
             }).then(function(res) {
               //res containes token plus user info
@@ -153,12 +171,15 @@
               $state.go('patient-view')
             }),
             function errorCallback(response) {}
-          }),
-          function errorCallback(response) {}
 
         }
+// CREATING DOCTOR PROFILE CREATING DOCTOR PROFILE CREATING DOCTOR PROFILE CREATING DOCTOR PROFILE
         else if (vm.users.doctorBox) {
           // console.log(vm.users);
+          let img = $window.localStorage.getItem('img_url')
+          console.log('successfully got image from local storage');
+          console.log(img);
+
           $http({
             method: 'POST',
             url: '/api/doctors',
@@ -168,7 +189,7 @@
               password: vm.users.password,
               email: vm.users.email,
               phone: vm.users.phone,
-              img: vm.users.img
+              img: img
             }
             //res coming from POST route
           }).then(function(res) {

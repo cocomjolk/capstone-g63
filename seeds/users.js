@@ -7,48 +7,48 @@ exports.seed = function(knex, Promise) {
       return knex('users').insert([
           { first_name: 'Susie',
             last_name: 'Cutie',
-            password: 'password1',
+            password: '$2a$12$3lt1wtvQW6Ag57YYRxy92OMVULrbombewZIBynFYR7BoT9MQ1CEku',
             email: 'susie@gmail.com',
             phone: '5127487651',
             points: '500',
             doctor_id: 3,
-            img: 'https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/13707810_10209041618691077_3196789863902341361_n.jpg?oh=caf0a6322563504299f2326ae5dc6975&oe=5AEF9384'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516479031/susie_wrrs7x.jpg'
           },
           { first_name: 'Darth',
             last_name: 'Vader',
-            password: 'password2',
+            password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'darth@gmail.com',
             phone: '5127487651',
             points: '100',
             doctor_id: 2,
-            img: 'http://cdn-static.denofgeek.com/sites/denofgeek/files/2018/01/vader-main.jpg'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516505883/Darth-Vader_m3c3jd.jpg'
           },
           { first_name: 'Robocop',
             last_name: 'Murphey',
-            password: 'password3',
+            password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'robocop@gmail.com',
             phone: '5127487651',
             points: '10000',
             doctor_id: 1,
-            img: 'https://cdn.pastemagazine.com/www/articles/RoboCop%20Poster%20Main.jpg'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477271/RoboCop_a7xfma.jpg'
           },
           { first_name: 'Michael',
             last_name: 'Quiroz',
-            password: 'password4',
+            password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'cocomjolk@hotmail.com',
             phone: '5127487651',
             points: '10000',
             doctor_id: 2,
-            img: 'https://scontent-dft4-2.xx.fbcdn.net/v/t1.0-9/16194894_10153989588431580_8147888634389679382_n.jpg?oh=b47a48a82b32b7e1a23a56127a4d8366&oe=5AED2726'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477110/blank-profile_tasoze.png'
           },
           { first_name: 'Harry',
             last_name: 'Henderson',
-            password: 'password5',
+            password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'harry@gmail.com',
             phone: '5127487651',
             points: '10',
             doctor_id: 1,
-            img: 'https://memegenerator.net/img/images/600x600/15088116/harry-henderson.jpg'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477264/harry-henderson_itl3kc.jpg'
           }
 
       ]);

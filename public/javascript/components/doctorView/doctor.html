@@ -90,7 +90,7 @@
             <!-- ADD REWARD FORM -->
             <div  ng-show="$ctrl.addRewardForm">
                 <!-- <div class="col-md-6"> -->
-                  <form ng-submit="$ctrl.createReward()">
+                  <form ng-submit="$ctrl.submitReward()">
                       <div class="rewardForm ">
                         <div class="input-group">
                           <input ng-model="$ctrl.newReward.reward_name"  class="form-control" type="text" placeholder="Reward Name" required/>
@@ -105,8 +105,9 @@
                           <textarea ng-model="$ctrl.newReward.description" class="form-control" type="textarea" placeholder="Description" rows="5" cols="80" required></textarea>
                         </div>
                           </br>
-                          <div class="input-group">
-                            <input ng-model="$ctrl.newReward.img"  class="form-control" type="text"  placeholder="Img URL"/>
+                          <div class="file-upload-container">
+                            <label for="exampleFormControlFile1">Add image</label>
+                            <input type="file" class="file" id="file-upload">
                           </div>
                         <div class="form-group">
                         <br>

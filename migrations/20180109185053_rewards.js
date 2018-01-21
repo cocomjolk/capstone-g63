@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.string('reward_name');
     table.integer('reward_points');
     table.string("doctor_id")
+    table.string("reward_comment")
     table.string('img');
     table.timestamps(true, true);
   })
