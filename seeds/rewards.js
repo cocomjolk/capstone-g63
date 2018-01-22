@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
         { reward_name: 'massage',
           reward_points: 700,
           doctor_id: 3,
-          reward_comment: '1 30 min. massage from Happy hands parlor',
+          reward_comment: '30 min. massage from Happy hands parlor',
           img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/couples-massage-lafusion-massage-and-spa-body-couples-massage_cic6v3.jpg'
         },
         { reward_name: 'Massage Hook',
@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
         { reward_name: 'Laser Therapy',
           reward_points: 10,
           doctor_id: 2,
-          reward_comment: '',
+          reward_comment: 'Laser therapy in your most painful areas',
           img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516505065/sharks_with_lasers_zynm3d.jpg'
         },
         { reward_name: 'lacrosse ball',

@@ -64,13 +64,12 @@
             $http.post('/api/users/verify', {token: token})
               .then( response => {
                 if (response.data !== "fail") {
-                  console.log('from .state("patient-view")');
-                  console.log(response.data);
+                  // console.log('from .state("patient-view")', response.data);
                   // console.log('from .state("patient-view")');
                   // console.log(response);
                   $window.localStorage.setItem('user', JSON.stringify(response.data))
 
-                  console.log('testing', $window.localStorage.getItem('user'));
+                  // console.log('testing', $window.localStorage.getItem('user'));
                 } else {
                   $state.go('login')
                 }

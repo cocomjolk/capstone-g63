@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var knex = require('../db/knex');
+const express = require('express');
+const router = express.Router();
+const knex = require('../db/knex');
 
 // REWARDS CREATE RECORD
 router.post('/', (req, res) => {
@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
 
 // REWARDS GET ALL REWARDS WITH DOCTOR ID:
 router.get('/', (req, res) => {
-  console.log(req.query.doctor_id)
+  // console.log(req.query.doctor_id)
   knex('rewards')
   .where({doctor_id: req.query.doctor_id})
   .then((rewards) => {

@@ -5,7 +5,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-main">
-    <a class="navbar-brand" href="#">Recovery Plus</a>
+    <a class="navbar-brand" href="#">Recovery Plus +</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,16 +14,10 @@
     <ul class="navbar-nav mr-auto">
 
         <li class="nav-item">
-          <a class="nav-link" ui-sref='patient-view'>patientView </a>
+          <a class="nav-link" ng-click="$ctrl.signIn()">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" ui-sref='doctor-view'>doctorView   </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" ui-sref='rewards-view'>rewardsView </a>
-        </li>
-        <li class="nav-item">
-          <a ui-sref='page-two' class="nav-link">Page 2 </a>
+          <a class="nav-link" ng-click="$ctrl.newAccount()" >Sign Up</a>
         </li>
 
     </ul>
@@ -145,28 +139,18 @@
           <div class="input-group">
             <input ng-model="$ctrl.users.phone"  class="form-control" type="number" placeholder="Phone Number" required/>
           </div>
-          <!-- </br> -->
-          <!-- ng-file-upload -->
-          <!-- <input name="file" type="file" class="file-upload" data-cloudinary-field="image_id"
-           data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':3000,'height':2000}}"/> -->
 
-          <!-- <div class="input-group">
-            <input ng-model="$ctrl.users.img"  class="form-control" placeholder="Image URL" required/>
-          </div> -->
           </br>
           <div class="input-group">
             <input ng-model="$ctrl.users.password"  class="form-control" type="password" placeholder="Enter Password" required/>
           </br>
           </div>
+
           <div class="file-upload-container">
             <label for="file-upload">something</label>
             <input class="file" type="file"  id="file-upload">
           </div>
 
-          <!-- <label class="file-upload-container" for="file-upload">
-            <input  type="file" style="display:none;" id="file-upload">
-            Select an Image
-            </label> -->
 
           <div class="form-group">
             <br>

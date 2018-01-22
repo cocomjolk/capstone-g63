@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
             email: 'susie@gmail.com',
             phone: '5127487651',
             points: '500',
-            doctor_id: 3,
+            doctor_id: 1,
             img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516479031/susie_wrrs7x.jpg'
           },
           { first_name: 'Darth',
@@ -28,7 +28,7 @@ exports.seed = function(knex, Promise) {
             password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'robocop@gmail.com',
             phone: '5127487651',
-            points: '10000',
+            points: '200',
             doctor_id: 1,
             img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477271/RoboCop_a7xfma.jpg'
           },
@@ -37,9 +37,9 @@ exports.seed = function(knex, Promise) {
             password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'cocomjolk@hotmail.com',
             phone: '5127487651',
-            points: '10000',
+            points: '20',
             doctor_id: 2,
-            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477110/blank-profile_tasoze.png'
+            img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516604368/mike_kiik2k.jpg'
           },
           { first_name: 'Harry',
             last_name: 'Henderson',
@@ -47,7 +47,7 @@ exports.seed = function(knex, Promise) {
             email: 'harry@gmail.com',
             phone: '5127487651',
             points: '10',
-            doctor_id: 1,
+            doctor_id: 3,
             img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477264/harry-henderson_itl3kc.jpg'
           }
 

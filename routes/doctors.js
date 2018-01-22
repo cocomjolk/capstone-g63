@@ -115,7 +115,7 @@ router.get('/', (req, res) => {
 
 //DOCTOR GET DOCTOR INFORMATION WITH DOCTOR_ID
 router.get('/id', (req, res) => {
-  console.log(req.query.id)
+  // console.log(req.query.id)
   knex('doctors')
   .where({id: req.query.id})
   //need first() to prevent from returning array
@@ -127,7 +127,7 @@ router.get('/id', (req, res) => {
 
 //USER GET ALL USERS WITH DOCTOR ID
 router.get('/doctor_id', (req, res) => {
-  console.log(req.query.doctor_id)
+  // console.log(req.query.doctor_id)
   knex('users')
   .where({doctor_id: req.query.doctor_id})
   .then((users) => {

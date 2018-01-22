@@ -15,6 +15,7 @@ app.use(express.static('public'))
 
 //created var for routes, used in app.use
 //let patients = require('./routes/patients')
+let activity = require('./routes/activity')
 let rewards = require('./routes/rewards')
 let doctors = require('./routes/doctors')
 let videos = require('./routes/videos')
@@ -25,6 +26,7 @@ app.get('/',function(req,res){
 })
 
 //incoming request from client, goint to routes in routes folder.
+app.use('/api/activity', activity);
 app.use('/api/rewards', rewards);
 app.use('/api/doctors', doctors);
 app.use('/api/videos', videos);

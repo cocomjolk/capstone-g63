@@ -7,24 +7,12 @@
 
 <!-- NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR  -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav-main">
-    <a class="navbar-brand" ui-sref='login'>Recovery Plus</a>
+    <a class="navbar-brand" ui-sref='login'>Recovery Plus +</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" ui-sref='login'>Home </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" ui-sref='patient-view'>patientView </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" ui-sref='rewards-view'>rewardsView </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" ui-sref='page-two'>Page 2 </a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" ui-sref=''>Edit info</a>
         </li>
@@ -35,7 +23,6 @@
     </div>
 </nav>
 
-<!-- **************************************************************************************** -->
 
 <!-- USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE  -->
 <div class="container" id="docBackground">
@@ -48,7 +35,7 @@
               <h3 class="display-4">Hello   Dr. {{$ctrl.last_name}}</h3>
               <img ng-src="{{$ctrl.img}}" class="rounded-circle img-fluid" alt="User image">
               <hr class="my-4">
-                <h3>{{$ctrl.points}} udates</h3>
+                <!-- <h3>{{$ctrl.points}} udates</h3> -->
                 <div class="btn-group">
                   <button ng-click="$ctrl.showForm = !$ctrl.showForm" class="btn btn-primary btn-lg btn-block" type="button" >Patients</button>
                 </div>
@@ -73,9 +60,9 @@
                     <h5 class="card-header text-black bg-secondary mb-3">{{patient.first_name}} {{patient.last_name}}</h5>
                     <img class="card-img-top" src="{{patient.img}}" alt="Card image cap">
                     <div class="card-body">
-                      <h6 class="card-text">Points: {{patient.points}} Videos: 0</h6>
-                      <p class="card-text">need to add a comment section in the db.</p>
-                      <a  ng-click="" class="btn btn-primary btn-block">{{reward.reward_points}} See videos</a>
+                      <h6 class="card-text">Points: {{patient.points}} Posts: 0</h6>
+                      <p class="card-text"></p>
+                      <a  ng-click="" class="btn btn-primary btn-block">{{reward.reward_points}} See Posts</a>
                     </div>
                 </div>
               </div>

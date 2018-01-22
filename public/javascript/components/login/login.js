@@ -31,7 +31,7 @@
       }
 
       //CREATE NEW ACCOUNT
-      vm.newAccount = function() {
+      vm.newAccount = () => {
         vm.showButtonSignIn = false;
         vm.showButtonNewAccount = false;
         vm.showFormSignIn = false;
@@ -72,9 +72,9 @@
             console.log($window.localStorage.img_url);
           }).catch(err => {
             console.error(err);
+            });
           });
-        });
-      }
+        }
 
 
 

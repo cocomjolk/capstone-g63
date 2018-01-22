@@ -4,7 +4,23 @@
 
 <!-- NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR NAV BAR -->
 <nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-dark" id="nav-main">
-    <a class="navbar-brand" ui-sref='login'>Recovery Plus</a>
+    <a class="navbar-brand" ui-sref='login'>Recovery Plus +</a>
+      <div class="">
+        <!-- <img src="{{$ctrl.doctor_img}}" class="rounded float-right" alt="..."> -->
+        <img class="rounded-circle" src="{{$ctrl.doctor_img}}" width="35" height="35" alt="Generic placeholder image">
+      </div>
+
+          <!-- <div class="row">
+            <div class="col-xs-2 text-center">
+
+              <p class="lead">"Dr. name" <a href="#" target="_blank"><i class="material-icons md-inverse pmd-sm">link</i></a></p>
+            </div>
+            <div class="col-md-10 text-center"> -->
+              <!-- <h2 class="mt-0">Joe Smith</h2> -->
+              <!-- <img src="http://placehold.it/150x40" class="img-fluid" width="10"> -->
+            <!-- </div>
+          </div> -->
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,13 +37,16 @@
       <li class="nav-item">
         <a class="nav-link" ui-sref='login'>Log Out</a>
       </li>
-
     </ul>
 
   </div>
 </nav>
 
+
 <!-- USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE  -->
+<section id="content">
+
+
 <div class="container" id="docBackground">
     <div class="row">
 
@@ -38,17 +57,18 @@
               <br>
               <br>
               <h3 class="display-4">Hello {{$ctrl.first_name}}</h3>
+
               <img ng-src="{{$ctrl.img}}" class="rounded-circle img-fluid" alt="User image">
               <hr class="my-4">
                 <h3>{{$ctrl.points}} Points</h3>
                 <div class="btn-group">
-                  <button ng-click="$ctrl.showUpload()" class="btn btn-primary btn-lg btn-block" type="button" >Upload Pic</button>
+                  <button ng-click="$ctrl.showUpload()" class="btn btn-primary btn-md btn-block" type="button" >Upload Pic</button>
                 </div>
                 <div class="btn-group">
-                  <button ng-click="$ctrl.showActivity()" class="btn btn-primary btn-lg btn-block" type="button">Recent Activity</button>
+                  <button ng-click="$ctrl.showActivity()" class="btn btn-primary btn-md btn-block" type="button">Recent Activity</button>
                 </div>
                 <div class="btn-group">
-                  <button ng-click="$ctrl.showRewards()" class="btn btn-primary btn-lg btn-block"  type="button">Rewards</button>
+                  <button ng-click="$ctrl.showRewards()" class="btn btn-primary btn-md btn-block"  type="button">Rewards</button>
                 </div>
             </div>
 
@@ -63,19 +83,30 @@
 
 
               <!-- Upload file Upload file Upload file Upload file -->
-              <div class="activity" ng-show='$ctrl.uploadForm'>
-                <!-- <h3 class="display-4 text-white"></h3> -->
-                <form ng-submit="$ctrl.uploadFile()">
+              <form ng-submit="$ctrl.submitUpload()" ng-show='$ctrl.uploadForm'>
+                <div class="form-group">
+
+                  <div class="uploadContainer" >
+                <!-- <br>
+                    <label class="radio-inline">
+                      <input ng-model="$ctrl.users.photo" type="radio" name="inLineRadio" value="1" required> Photo
+                    </label>
+
+                    <label class="radio-inline">
+                      <input ng-model="$ctrl.users.video" type="radio" name="inLineRadio" value="2" required> Video
+                    </label> -->
+                <br>
                     <div class="file-upload-container">
                       <label for="file-upload"></label>
                       <input class="file" type="file"  id="file-upload">
                     </div>
-                    <div class="comment">
-                          <a  ng-click="" class="btn btn-primary">Submit</a>
-                    </div>
-                </form>
-              </div>
+                <br>
+                      <!-- <a  ng-click="$ctrl.submitUpload()" class="btn btn-primary">Submit</a> -->
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
 
+                </div>
+              </form>
 
               <!-- RECENT ACTIVITY  RECENT ACTIVITY  RECENT ACTIVITY  -->
               <div class="activity" ng-show='$ctrl.activityContent'>
@@ -84,11 +115,12 @@
                 <div ng-repeat='activity in $ctrl.activities' class="row" ng-show='true'>
                   <div class="card" style="width: 18rem;">
                     <div class="patientList">
-                        <h5 class="card-header text-black bg-secondary mb-3">{{activity.activity_name}}</h5>
-                        <div class="card-body">
-                          <h6 class="card-text">+ {{activity.activity_points}} points</h6>
-                          <a  ng-click="" class="btn btn-primary btn-block">{{activity.media}} See video</a>
-                        </div>
+                        <h5 class="card-header text-black bg-secondary mb-3">{{activity.activity_action}} {{activity.activity_name}}</h5>
+                        <!-- <div class="card-body"> -->
+                          <h6 class="card-text"> {{activity.activity_points}} points on {{ activity.created_at | date : format : timezone}}</h6>
+
+                          <!-- <a  ng-click="" class="btn btn-secondary btn-block">{{activity.media}} Look</a> -->
+                        <!-- </div> -->
                     </div>
                   </div>
                 </div>
@@ -107,7 +139,7 @@
                         <div class="card-body">
                             <h6 class="card-text">Reward Points: {{reward.reward_points}}</h6>
                             <p class="card-text">Description{{reward.reward_comment}}</p>
-                            <a  ng-click="$ctrl.redeemReward(reward.reward_points)" class="btn btn-outline-primary btn-sm">Redeem</a>
+                            <a  ng-click="$ctrl.redeemReward(reward.reward_points, reward.id, reward.reward_name)" class="btn btn-outline-primary btn-sm">Redeem</a>
                         </div>
                     </div>
                   </div>
@@ -117,3 +149,4 @@
           </div>
         </div>
     </div>
+</section>
