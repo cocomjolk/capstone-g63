@@ -11,20 +11,21 @@
       vm.uploadForm = false;
       vm.rewardContent = false;
 
-      //coming from verify route
-      let user = JSON.parse($window.localStorage.getItem('user'))
-      // console.log(user);
-      vm.id = user.id
-      vm.first_name = user.first_name
-      vm.points = user.points
-      if(!user.img){
-        vm.img = 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477110/blank-profile_tasoze.png'
-      }else {
-        vm.img = user.img
-      }
+      let user;
 
-// ON INITIATE ON INITIATE ON INITIATE ON INITIATE ON INITIATE ON INITIATE ON INITIATE
       vm.$onInit = () => {
+        user = JSON.parse($window.localStorage.getItem('user'))
+        console.log($window.localStorage.getItem('user'));
+        console.log('from patient view', user);
+        vm.id = user.id
+        vm.first_name = user.first_name
+        vm.points = user.points
+        if(!user.img){
+          vm.img = 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516477110/blank-profile_tasoze.png'
+        }else {
+          vm.img = user.img
+        }
+
           $http({
             //GETS DOCTOR ID
             method: 'GET',
@@ -34,9 +35,7 @@
             }
           }).then(function(res) {
             vm.doctor_img = res.data.img
-              // console.log(res.data.first_name);
-              // console.log(res.data.last_name);
-            //GETS ALL REWARDS WITH DOCTOR ID
+
             $http({
               method: 'GET',
               url: '/api/rewards',
@@ -45,15 +44,12 @@
               }
             }).then(function(res) {
               vm.rewards = res.data
-              // console.log('Reward data');
-              // console.log(vm.rewards);
-              //GET ACTIVITY FOR USER
               vm.showActivity();
             }),
             function errorCallback(res) {}
           }),
           function errorCallback(res) {}
-        }
+      }
 
       vm.showRewards = function() {
         vm.rewardContent = true;
@@ -96,12 +92,7 @@
 
 
 
-// SUBMIT UPLOAD SUBMIT UPLOAD SUBMIT UPLOAD SUBMIT UPLOAD SUBMIT UPLOAD SUBMIT UPLOAD
       vm.submitUpload = () => {
-        // if(vm.users.photo){
-        // } else if(vm.users.video) {
-        //   // add20 points
-        // }
         let photo_post = 5;
         user.points += photo_post
         let activity_img = $window.localStorage.getItem('activity_img_url')
@@ -160,14 +151,7 @@
         vm.rewardContent = false;
       }
 
-//REDEEM REWARD REDEEM REWARD REDEEM REWARD REDEEM REWARD REDEEM REWARD
       vm.redeemReward = (rewardPoints, reward_id, reward_name) => {
-        // console.log('start of function', user.points);
-        // console.log('cost of reward: ', rewardPoints);
-
-        //if user does not have enough then message
-        //esle redeem reward
-        //decucts points from users user
         user.points -= rewardPoints
         $http({
           method: 'PATCH',
@@ -177,11 +161,7 @@
             id: user.id
           }
         }).then(function(res) {
-          // console.log('coming from route', res.data.points);
           vm.points = res.data.points
-          // console.log('users new points:');
-          // console.log('users new points: ',vm.points);
-          //add activity table
           $http({
             method: 'POST',
             url: '/api/activity/redeem',
@@ -189,7 +169,7 @@
               user_id: user.id,
               doctor_id: user.doctor_id,
               activity_points: rewardPoints,
-              activity_action: 'Redeemed Reward',
+              activity_action: 'Redeemed',
               activity_name: reward_name
             }
           }).then(function(res) {
@@ -204,6 +184,5 @@
 
   },
   templateUrl: "javascript/components/patientView/patient.html"
-//   template:``
   })
 })()

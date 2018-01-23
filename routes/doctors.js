@@ -17,7 +17,6 @@ router.post('/verify', (req,res)=>{
     knex('doctors')
     .where({id: id})
     .then( result => {
-        console.log('result',result);
         let doctor = result[0];
 
         res.json({
@@ -57,8 +56,6 @@ router.post('/', (req, res) => {
       let doctor = data[0];
       //Use doctor ID to verify token later
       const token = jwt.sign({ type: "doctor", id: doctor.id}, "SUPER SECRET")
-      console.log( 'coming from post route');
-      //console.log(doctor);
       res.status(201).json({
         id: doctor.id,
         email: doctor.email,
@@ -74,16 +71,13 @@ router.post('/', (req, res) => {
 
 //USER VERIFY PASSWORD WITH EMAIL
 router.post('/email', (req, res) => {
-  //log in terminal
-  // console.log(req.body);
-  //get email from login.js
   knex('doctors')
-  //find user by email
   .where({email: req.body.email})
   //need first() to prevent from returning array
   .first()
   //user info passed to .then
   .then((user) => {
+    console.log('user from db:', user);
     bcrypt.compare(req.body.password, user.password)
     .then(function(result) {
       if (result == true){

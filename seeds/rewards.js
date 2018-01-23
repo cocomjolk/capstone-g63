@@ -18,8 +18,8 @@ exports.seed = function(knex, Promise) {
           img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/couples-massage-lafusion-massage-and-spa-body-couples-massage_cic6v3.jpg'
         },
         { reward_name: 'Massage Hook',
-          reward_points: 500,
-          doctor_id: 3,
+          reward_points: 300,
+          doctor_id: 1,
           reward_comment: '',
           img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516480421/massage_hook_dw3dox.jpg'
         },

@@ -11,10 +11,11 @@ const knex = require('../db/knex');
 router.post('/redeem', (req, res) => {
     knex('activity')
     .insert({
+      redeemed: true,
       user_id: req.body.user_id,
       doctor_id: req.body.doctor_id,
-      redeemed: true,
       activity_name: req.body.activity_name,
+      activity_action: req.body.activity_action,
       activity_points: req.body.activity_points
     })
     .returning('*')
@@ -31,12 +32,14 @@ router.post('/upload', (req, res) => {
     console.log('req.body from upload route:', req.body);
     knex('activity')
     .insert({
+      redeemed: false,
       user_id: req.body.user_id,
       doctor_id: req.body.doctor_id,
-      redeemed: false,
+      activity_img: req.body.activity_img,
       activity_name: req.body.activity_name,
+      activity_action: req.body.activity_action,
       activity_points: req.body.activity_points,
-      activity_img: req.body.activity_img
+
     })
     .returning('*')
     .then((data) => {

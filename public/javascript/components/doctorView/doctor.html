@@ -25,6 +25,8 @@
 
 
 <!-- USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE  -->
+<section id="content">
+
 <div class="container" id="docBackground">
     <div class="row">
 
@@ -37,10 +39,10 @@
               <hr class="my-4">
                 <!-- <h3>{{$ctrl.points}} udates</h3> -->
                 <div class="btn-group">
-                  <button ng-click="$ctrl.showForm = !$ctrl.showForm" class="btn btn-primary btn-lg btn-block" type="button" >Patients</button>
+                  <button ng-click="$ctrl.showPatients()" class="btn btn-primary btn-lg btn-block" type="button" >Patients</button>
                 </div>
                 <div class="btn-group">
-                  <button ng-click="$ctrl.showForm = !$ctrl.showForm" class="btn btn-primary btn-lg btn-block"  type="button">Rewards</button>
+                  <button ng-click="$ctrl.getRewards()" class="btn btn-primary btn-lg btn-block"  type="button">Rewards</button>
                 </div>
             </div>
 
@@ -52,7 +54,7 @@
       <div id="userContent">
 
           <!-- LIST OF PATIENTS  -->
-          <div class="rewards" ng-show='$ctrl.showForm'>
+          <div class="patients" ng-show='$ctrl.showPatientsView'>
             <h3 class="display-4 text-white">Patients</h3>
             <div ng-repeat='patient in $ctrl.patients' class="row" ng-show='true'>
               <div class="card" style="width: 18rem;">
@@ -60,45 +62,73 @@
                     <h5 class="card-header text-black bg-secondary mb-3">{{patient.first_name}} {{patient.last_name}}</h5>
                     <img class="card-img-top" src="{{patient.img}}" alt="Card image cap">
                     <div class="card-body">
-                      <h6 class="card-text">Points: {{patient.points}} Posts: 0</h6>
+                      <h6 class="card-text">Points: {{patient.points}}</h6>
                       <p class="card-text"></p>
-                      <a  ng-click="" class="btn btn-primary btn-block">{{reward.reward_points}} See Posts</a>
+
+                      <!-- <a  ng-click="$ctrl.patientActivity(patient.id)" class="btn btn-primary btn-block">See Posts</a> -->
+                      <button ng-click="$ctrl.patientActivity(patient.id)" type="button" class="btn btn-outline-light btn-sm">See Posts</button>
+
+
+
                     </div>
                 </div>
               </div>
             </div>
+
+
+            <!-- PATIENT ACTIVITY -->
+            <div class="patient-activity" ng-show='$ctrl.activityContent'>
+              <div ng-repeat='activity in $ctrl.activities' class="row" ng-show='true'>
+                <div class="card" style="width: 10rem; height: 10rem;">
+                  <div class="activityList">
+                    <a href="{{activity.activity_img}}">
+                      <img class="card-img-activity" src="{{activity.activity_img}}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                      <p class="card-text">{{activity.activity_action}} {{activity.activity_name}}</p>
+                      <p class="card-text">{{activity.activity_points}} points on {{ activity.created_at | date : format : timezone}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
           </div>
 
+
           <!-- LIST OF REWARDS FROM DOCTOR -->
-          <div class="rewards" ng-show='!$ctrl.showForm'>
+          <div class="rewards" ng-show='$ctrl.showRewards'>
             <h3 class="display-4 text-white">Rewards</h3>
-            <button ng-click="$ctrl.addRewardForm = !$ctrl.addRewardForm " type="button" class="btn btn-outline-light btn-sm">+ add Reward</button>
+            <button ng-click="$ctrl.addReward()" type="button" class="btn btn-outline-light btn-sm">+ add Reward</button>
 
             <!-- ADD REWARD FORM -->
             <div  ng-show="$ctrl.addRewardForm">
                 <!-- <div class="col-md-6"> -->
                   <form ng-submit="$ctrl.submitReward()">
                       <div class="rewardForm ">
+                        <br>
                         <div class="input-group">
                           <input ng-model="$ctrl.newReward.reward_name"  class="form-control" type="text" placeholder="Reward Name" required/>
                         </div>
                           </br>
                         <div class="input-group">
-                          <input ng-model="$ctrl.newReward.reward_points"  class="form-control" type="text"  placeholder="Reward Points" required/>
+                          <input ng-model="$ctrl.newReward.reward_points"  class="form-control" type="number"  placeholder="Reward Points" required/>
                         </div>
                           </br>
                         <div class="input-group">
-                          <!-- <input ng-model="$ctrl.rewards.comments"  class="form-control" type="textarea" placeholder="Comments" required/> -->
-                          <textarea ng-model="$ctrl.newReward.description" class="form-control" type="textarea" placeholder="Description" rows="5" cols="80" required></textarea>
+                          <textarea ng-model="$ctrl.newReward.comment" class="form-control" type="textarea" placeholder="Description" rows="5" cols="80" required></textarea>
                         </div>
                           </br>
                           <div class="file-upload-container">
                             <label for="exampleFormControlFile1">Add image</label>
                             <input type="file" class="file" id="file-upload">
                           </div>
+                          <br>
                         <div class="form-group">
-                        <br>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Reward</button>
+                        <button type="submit" class="btn btn-primary btn-lg ">Submit Reward</button>
                       </div>
                   </div>
                 </form>
@@ -114,7 +144,7 @@
                   <img class="card-img-top" src="{{reward.img}}" alt="Card image cap">
                   <div class="card-body">
                       <h6 class="card-text">Reward Points: {{reward.reward_points}}</h6>
-                      <p class="card-text">need to add a comment section in the db.</p>
+                      <p class="card-text">{{reward.reward_comment}}</p>
                       <a  ng-click="" class="btn btn-outline-primary btn-sm">Delete Reward</a>
                   </div>
               </div>
@@ -125,6 +155,6 @@
       </div>
     </div>
 </div>
-
+</section>
 
 <!-- ********************************************************************************* -->

@@ -41,12 +41,11 @@
         resolve: {
           signedIn: function($window, $state, $http){
             let token = $window.localStorage.getItem('token')
-            $http.post('/api/doctors/verify', {token: token})
+            return $http.post('/api/doctors/verify', {token: token})
               .then( response => {
                 if (response.data !== "fail") {
-                  console.log('from .state("doctor-view")');
-                  console.log(response.data);
                   $window.localStorage.setItem('doctor', JSON.stringify(response.data))
+                  return;
                 } else {
                   $state.go('login')
                 }
@@ -61,14 +60,14 @@
           signedIn: function($window, $state, $http){
             let token = $window.localStorage.getItem('token')
             //goes to verify users route.
-            $http.post('/api/users/verify', {token: token})
+            return $http.post('/api/users/verify', {token: token})
               .then( response => {
                 if (response.data !== "fail") {
                   // console.log('from .state("patient-view")', response.data);
                   // console.log('from .state("patient-view")');
                   // console.log(response);
                   $window.localStorage.setItem('user', JSON.stringify(response.data))
-
+                  return;
                   // console.log('testing', $window.localStorage.getItem('user'));
                 } else {
                   $state.go('login')

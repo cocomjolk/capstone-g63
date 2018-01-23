@@ -37,8 +37,8 @@ exports.seed = function(knex, Promise) {
             password: '$2a$12$uQYa5YDyZMArRNPpQmaG9.YUWwO4YFfIZL/6X5DYLcKxOGvsMF3Cu',
             email: 'cocomjolk@hotmail.com',
             phone: '5127487651',
-            points: '20',
-            doctor_id: 2,
+            points: '120',
+            doctor_id: 1,
             img: 'http://res.cloudinary.com/hxf6ors9y/image/upload/v1516604368/mike_kiik2k.jpg'
           },
           { first_name: 'Harry',

@@ -1,23 +1,27 @@
 (function(){
   angular.module('app').component('doctorView', {
-    controller:function ($http, $stateParams, $window) {
+    controller:function ($http, $state, $window) {
 
       const CLOUDINARY_URL ='https://cors-anywhere.herokuapp.com/https://api.cloudinary.com/v1_1/hxf6ors9y/image/upload';
       const CLOUDINARY_UPLOAD_PRESET = 'jd099oi8';
 
       const vm = this
 
-      vm.showForm = true;
+      vm.showPatientsView = true;
       vm.addRewardForm = false;
 
       let doctor = JSON.parse($window.localStorage.getItem('doctor'))
-      console.log(doctor);
       vm.doctor = doctor
       vm.last_name = doctor.last_name
       vm.img = doctor.img
 
+      vm.showPatients = () => {
+        vm.showPatientsView = true;
+        vm.showRewards = false;
+      }
+
 // *******************************************************************************************
-       function getRewards() {
+       vm.getRewards = () => {
          $http({
           method: 'GET',
           url: '/api/rewards',
@@ -25,16 +29,17 @@
             doctor_id: doctor.id
           }
         }).then(function(res) {
-            vm.res = res.data
-            console.log(res);
+            vm.rewards = res.data
+            console.log('running getRewrds function', res.data);
           }),
             function errorCallback(res) {}
+            vm.showRewards = true;
+            vm.showPatientsView = false;
        }
-      // *******************************************************************************************
+// *******************************************************************************************
 
-
+      //GETS ALL PATIENTS AND REWARDS ASSOCITED WITH DOCTOR
       vm.$onInit = () => {
-            //GET ALL PATIENTS WITH DOCTOR ID
             $http({
               method: 'GET',
               url: '/api/doctors/doctor_id',
@@ -43,7 +48,6 @@
               }
             }).then(function(res) {
               vm.patients = res.data
-              //GET ALL REWARDS WITH DOCTOR ID
               $http({
                 method: 'GET',
                 url: '/api/rewards',
@@ -52,13 +56,35 @@
                 }
               }).then(function(res) {
                   vm.rewards = res.data
+
                 }),
                   function errorCallback(res) {}
             }),
               function errorCallback(res) {}
       }
 
+// SHOW PATIENT ACTIVITY/ POSTS
+            vm.patientActivity = (patient_id) => {
+              $http({
+                method: 'GET',
+                url: '/api/activity',
+                params: {
+                  user_id: patient_id
+                }
+              }).then(function(res) {
+                vm.activities = res.data
+                console.log('activity data from get route:', vm.activities);
+              }),
+              function errorCallback(res) {}
+              vm.activityContent = !vm.activityContent
+            }
+
+
+
+//ADD REWARD ADD REWARD ADD REWARD ADD REWARD ADD REWARD ADD REWARD ADD REWARD ADD REWARD
       vm.addReward = () => {
+        vm.addRewardForm = !vm.addRewardForm
+
         let fileUpload = document.getElementById('file-upload');
         fileUpload.addEventListener('change', (event) => {
           let file = event.target.files[0];
@@ -66,7 +92,6 @@
           let formData = new FormData();
           formData.append('file', file);
           formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-          console.log(formData);
             axios({
             url: CLOUDINARY_URL,
             method: 'POST',
@@ -75,37 +100,34 @@
             },
             data: formData
           }).then(res => {
-            //response will contain secure_url
-            //This needs to be saved to db to grab later.
             reward_img_url = res.data.secure_url
             $window.localStorage.setItem('reward_img_url', reward_img_url);
-            console.log('from login.js, local storage');
+            console.log('from doctor view, local storage');
             console.log($window.localStorage.reward_img_url);
             })
-
+          })
+      }
       vm.submitReward = () => {
+        reward_img_url = $window.localStorage.getItem('reward_img_url', reward_img_url);
         $http({
           method: 'POST',
           url: '/api/rewards',
           data: {
             reward_name: vm.newReward.reward_name,
             reward_points: vm.newReward.reward_points,
-            // description: vm.rewards.reward_description,
-            img: vm.newReward.img,
-            doctor_id: doctor.doctor_id,
+            reward_comment: vm.newReward.comment,
+            img: reward_img_url,
+            doctor_id: doctor.id,
           }
         }).then(function(res) {
-          //printing whats coming from server
-          // console.log("patient json from server")
-          // console.log(res);
+          console.log("posted reward from route ", res);
           delete vm.newReward
-          }),
-          function errorCallback(response) {}
-            getRewards();
-            vm.addRewardForm() = false;
+          vm.getRewards();
+        }),
+        function errorCallback(response) {}
+        vm.addRewardForm = !vm.addRewardForm
       }
-    })
-  }
+
 },
 
 

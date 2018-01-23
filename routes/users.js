@@ -11,8 +11,6 @@ const bcrypt = require('bcrypt');
 
 // USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD
 router.post('/', (req, res) => {
-  // check for duplicate emails eventually
-  // hash the password
   bcrypt.hash(req.body.password, 12)
   .then( hashed_pass => {
     console.log(hashed_pass);
