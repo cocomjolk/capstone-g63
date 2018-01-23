@@ -6,20 +6,8 @@
 <nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-dark" id="nav-main">
     <a class="navbar-brand" ui-sref='login'>Recovery Plus +</a>
       <div class="">
-        <!-- <img src="{{$ctrl.doctor_img}}" class="rounded float-right" alt="..."> -->
         <img class="rounded-circle" src="{{$ctrl.doctor_img}}" width="35" height="35" alt="Generic placeholder image">
       </div>
-
-          <!-- <div class="row">
-            <div class="col-xs-2 text-center">
-
-              <p class="lead">"Dr. name" <a href="#" target="_blank"><i class="material-icons md-inverse pmd-sm">link</i></a></p>
-            </div>
-            <div class="col-md-10 text-center"> -->
-              <!-- <h2 class="mt-0">Joe Smith</h2> -->
-              <!-- <img src="http://placehold.it/150x40" class="img-fluid" width="10"> -->
-            <!-- </div>
-          </div> -->
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -139,7 +127,7 @@
                         <div class="card-body">
                             <h6 class="card-text">Reward Points: {{reward.reward_points}}</h6>
                             <p class="card-text">Description{{reward.reward_comment}}</p>
-                            <a  ng-click="$ctrl.redeemReward(reward.reward_points, reward.id, reward.reward_name)" class="btn btn-outline-primary btn-sm">Redeem</a>
+                            <a  ng-click="$ctrl.redeemReward(reward.reward_points, reward.id, reward.reward_name, reward.img)" class="btn btn-outline-primary btn-sm">Redeem</a>
                         </div>
                     </div>
                   </div>

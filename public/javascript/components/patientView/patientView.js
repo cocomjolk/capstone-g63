@@ -151,7 +151,7 @@
         vm.rewardContent = false;
       }
 
-      vm.redeemReward = (rewardPoints, reward_id, reward_name) => {
+      vm.redeemReward = (rewardPoints, reward_id, reward_name, reward_img) => {
         user.points -= rewardPoints
         $http({
           method: 'PATCH',
@@ -168,9 +168,10 @@
             data: {
               user_id: user.id,
               doctor_id: user.doctor_id,
-              activity_points: rewardPoints,
+              activity_name: reward_name,
+              activity_img: reward_img,
               activity_action: 'Redeemed',
-              activity_name: reward_name
+              activity_points: rewardPoints,
             }
           }).then(function(res) {
             console.log('activity data', res);

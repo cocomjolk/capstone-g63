@@ -26,14 +26,12 @@
 
 <!-- USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE USER PROFILE  -->
 <section id="content">
-
-<div class="container" id="docBackground">
+  <div class="container" id="docBackground">
     <div class="row">
 
           <div id="docProfile">
 
             <div class="docBox">
-
               <h3 class="display-4">Hello   Dr. {{$ctrl.last_name}}</h3>
               <img ng-src="{{$ctrl.img}}" class="rounded-circle img-fluid" alt="User image">
               <hr class="my-4">
@@ -51,53 +49,51 @@
     </div>
 <!-- USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT  -->
     <div class="row">
-      <div id="userContent">
+      <div id="userContent" class="userContent">
 
-          <!-- LIST OF PATIENTS  -->
-          <div class="patients" ng-show='$ctrl.showPatientsView'>
-            <h3 class="display-4 text-white">Patients</h3>
-            <div ng-repeat='patient in $ctrl.patients' class="row" ng-show='true'>
-              <div class="card" style="width: 18rem;">
-                <div class="patientList">
-                    <h5 class="card-header text-black bg-secondary mb-3">{{patient.first_name}} {{patient.last_name}}</h5>
-                    <img class="card-img-top" src="{{patient.img}}" alt="Card image cap">
-                    <div class="card-body">
-                      <h6 class="card-text">Points: {{patient.points}}</h6>
-                      <p class="card-text"></p>
+        <div class="patients" ng-show='$ctrl.showPatientsView'>
+          <h3 class="display-4 text-white">Patients</h3>
 
-                      <!-- <a  ng-click="$ctrl.patientActivity(patient.id)" class="btn btn-primary btn-block">See Posts</a> -->
-                      <button ng-click="$ctrl.patientActivity(patient.id)" type="button" class="btn btn-outline-light btn-sm">See Posts</button>
+            <div id="accordion">
+              <div ng-repeat='patient in $ctrl.patients'  ng-show='true'>
 
-
-
+                  <div class="card" style="width: 85%;">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <div class="accordion-img">
+                          <img class="rounded float-left" src="{{patient.img}}"  height="100" alt="patient">
+                        </div>
+                        <button ng-click="$ctrl.patientActivity(patient.id)" class="btn btn-info btn-sm" data-toggle="collapse" data-target="#{{patient.id}}" aria-expanded="false" aria-controls="collapseOne">
+                          {{patient.first_name}} {{patient.last_name}}
+                        </button> Points: {{patient.points}}
+                      </h5>
                     </div>
-                </div>
-              </div>
-            </div>
+                    <div id="{{patient.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
 
+                        <div class="patient-activity" ng-show='$ctrl.activityContent'>
+                          <div ng-repeat='activity in $ctrl.activities' class="row" >
+                            <div class="card" style="width: 100%; ">
+                              {{ activity.created_at | date : format : timezone}}
+                              <div class="activityList">
+                                <a href="{{activity.activity_img}}">
+                                  <img class="card-img-activity " src="{{activity.activity_img}}" alt="Card image cap">
+                                </a>
+                                <div class="card-body" style="background: silver;">
+                                  <p class="card-text">{{activity.activity_action}} {{activity.activity_name}}: {{activity.activity_points}} points </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-            <!-- PATIENT ACTIVITY -->
-            <div class="patient-activity" ng-show='$ctrl.activityContent'>
-              <div ng-repeat='activity in $ctrl.activities' class="row" ng-show='true'>
-                <div class="card" style="width: 10rem; height: 10rem;">
-                  <div class="activityList">
-                    <a href="{{activity.activity_img}}">
-                      <img class="card-img-activity" src="{{activity.activity_img}}" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                      <p class="card-text">{{activity.activity_action}} {{activity.activity_name}}</p>
-                      <p class="card-text">{{activity.activity_points}} points on {{ activity.created_at | date : format : timezone}}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+
               </div>
             </div>
-
-
-
-
-          </div>
-
+        </div>
 
           <!-- LIST OF REWARDS FROM DOCTOR -->
           <div class="rewards" ng-show='$ctrl.showRewards'>
@@ -154,7 +150,7 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 </section>
 
 <!-- ********************************************************************************* -->

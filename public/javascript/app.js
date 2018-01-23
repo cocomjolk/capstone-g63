@@ -28,13 +28,6 @@
           user: null
         }
       })
-      .state('page-two',{
-        url: '/page-two',
-        component: 'pageTwo',
-        params: {
-          user: null
-        }
-      })
       .state('doctor-view',{
         url: '/doctor-view',
         component: 'doctorView',
