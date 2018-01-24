@@ -39,12 +39,12 @@ Users can sign in as a patient or doctor.
 
 ### 2. view rewards
 Patients can view rewards the doctor has provided and redeem if they have enough points.
-![PatientView](readme/user_view rewards.png)
+![PatientView](readme/user_view_rewards.png)
 
 
 ### 3. upload pic
 Patients can upload pics of exercises.
-![Detail](readme/user_upload meter.png)
+![Detail](readme/user_upload_pic.png)
 
 
 ### 4. As a doctor view patients
