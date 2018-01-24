@@ -13,9 +13,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" ui-sref=''>Edit info</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" ui-sref='login'>Log Out</a>
         </li>
@@ -141,7 +141,7 @@
                   <div class="card-body">
                       <h6 class="card-text">Reward Points: {{reward.reward_points}}</h6>
                       <p class="card-text">{{reward.reward_comment}}</p>
-                      <a  ng-click="" class="btn btn-outline-primary btn-sm">Delete Reward</a>
+                      <a  ng-click="$ctrl.deleteReward(reward.id)" class="btn btn-outline-primary btn-sm">Delete Reward</a>
                   </div>
               </div>
             </div>

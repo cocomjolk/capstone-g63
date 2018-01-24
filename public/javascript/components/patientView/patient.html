@@ -19,9 +19,9 @@
       <li class="nav-item">
         <a class="nav-link" ui-sref='login'>Home </a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" ui-sref=''>Edit Info </a>
-      </li>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" ui-sref='login'>Log Out</a>
       </li>
@@ -74,22 +74,13 @@
               <form ng-submit="$ctrl.submitUpload()" ng-show='$ctrl.uploadForm'>
                 <div class="form-group">
 
-                  <div class="uploadContainer" >
-                <!-- <br>
-                    <label class="radio-inline">
-                      <input ng-model="$ctrl.users.photo" type="radio" name="inLineRadio" value="1" required> Photo
-                    </label>
-
-                    <label class="radio-inline">
-                      <input ng-model="$ctrl.users.video" type="radio" name="inLineRadio" value="2" required> Video
-                    </label> -->
-                <br>
-                    <div class="file-upload-container">
-                      <label for="file-upload"></label>
-                      <input class="file" type="file"  id="file-upload">
-                    </div>
-                <br>
-                      <!-- <a  ng-click="$ctrl.submitUpload()" class="btn btn-primary">Submit</a> -->
+                    <div class="uploadContainer" >
+                        <br>
+                      <div class="file-upload-container">
+                        <label for="file-upload"></label>
+                        <input class="file" type="file"  id="file-upload">
+                      </div>
+                        <br>
                       <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
 

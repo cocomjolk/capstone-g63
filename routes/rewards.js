@@ -12,7 +12,6 @@ router.post('/', (req, res) => {
   });
 })
 
-
 // REWARDS GET ALL REWARDS WITH DOCTOR ID:
 router.get('/', (req, res) => {
   // console.log(req.query.doctor_id)
@@ -23,62 +22,29 @@ router.get('/', (req, res) => {
   })
 });
 
-// REWARDS EDIT
-router.get('/:id/edit', function(req, res){
-  knex('rewards')
-  .select('*')
-  .where({id: req.params.id})
-  .first()
-  .then(function(reward){
-    res.render('rewards/edit', {reward:reward})
-   })
-});
-
-// REWARDS UPDATE
-router.patch('/:id', function(req, res){
-  knex('rewards')
-  .update(req.body)
-  .where({id: req.params.id})
-  .returning('*')
-  .then((reward) => {
-    res.redirect('/rewards')
-  })
-})
-
 // REWARDS DESTROY
-router.delete('/:id', function(req, res){
+router.delete('/delete', function(req, res){
   knex('rewards')
   .select('*')
-  .where(({id: req.params.id}))
+  .where(({id: req.query.id}))
   .first()
   .del()
   .then(function(reward){
-    res.redirect('/rewards')
+    res.status(200).json(reward);
   })
 })
 
-// // REWARDS SHOW PAGE
-// router.get('/:id', function(req, res) {
-//   let reward = {};
+// REWARDS UPDATE
+// router.patch('/:id', function(req, res){
 //   knex('rewards')
-//   .select('*')
-//   //will pass patient ID from object from component page
+//   .update(req.body)
 //   .where({id: req.params.id})
-//   .first()
-//   .then(function(reward){
-//     reward = reward;
-//     knex('rewards')
-//     .orderBy('price', 'asc')
-//     .select('rewards.name', 'donuts.name', 'donuts.price')
-//     .where('rewards.name', reward.name)
-//     .innerJoin('reward_donuts', 'reward_id', 'rewards.id')
-//     .innerJoin('donuts', 'donut_id', 'donuts.id')
-//     .then(function (donuts) {
-//       reward.donuts = donuts;
-//       //console.log(reward);
-//       res.render('rewards/show', {reward: reward})
-//     });
-//   });
-// });
+//   .returning('*')
+//   .then((reward) => {
+//     res.redirect('/rewards')
+//   })
+// })
+
+
 
 module.exports = router

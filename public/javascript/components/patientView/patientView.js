@@ -152,6 +152,10 @@
       }
 
       vm.redeemReward = (rewardPoints, reward_id, reward_name, reward_img) => {
+        if(user.points < rewardPoints){
+          console.log('not enough points');
+        } else {
+
         user.points -= rewardPoints
         $http({
           method: 'PATCH',
@@ -181,6 +185,7 @@
         }),
         function errorCallback(res) {}
       }
+    }
 
 
   },

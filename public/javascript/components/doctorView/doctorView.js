@@ -128,6 +128,21 @@
         vm.addRewardForm = !vm.addRewardForm
       }
 
+      vm.deleteReward = (reward_id) => {
+        $http({
+          method: 'DELETE',
+          url: '/api/rewards/delete',
+          params: {
+            id: reward_id
+          }
+        }).then(function(res) {
+          console.log("delete reward from route ", res);
+          vm.getRewards();
+        }),
+        function errorCallback(response) {}
+      }
+
+
 },
 
 
