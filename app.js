@@ -14,7 +14,6 @@ app.use(express.static('public'))
 
 
 //created var for routes, used in app.use
-//let patients = require('./routes/patients')
 let activity = require('./routes/activity')
 let rewards = require('./routes/rewards')
 let doctors = require('./routes/doctors')

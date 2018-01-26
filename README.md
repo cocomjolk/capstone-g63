@@ -1,4 +1,6 @@
-# Recovery Plus +
+
+![logo](readme/recovery_logo.png)
+
 **A web and mobile app to help incentivize patients in physical therapy to complete prescribed exercises.**
 
 Patients receive rewards for providing evidence of an exercise being completed. It is also a way for doctors to know if they are doing the exercises correctly. Doctors choose what kind of rewards they want to provide.  
@@ -15,16 +17,7 @@ Patients receive rewards for providing evidence of an exercise being completed. 
 - Bootstrap 4 CSS
 - Heroku (for deployment)
 - Cloudinary (for image hosting)
----
-## Challenges:
 
-- Keeping track of data flow
-
-- State management
-
-- Token based authentication with multiple account types
-
-- Custom file upload strategy
 ---
 ### Demo Videos
 
@@ -55,5 +48,31 @@ Doctors can view all patients and their posted activity.
 ### 5. add rewards
 Doctors can add and remove rewards.
 ![Inbox](readme/doc_add_reward.png)
+
+---
+## Challenges:
+
+- Keeping track of data flow, State management.
+  Jumping back and forth between different files for authentication and verification and using ui router was convoluted at first. Became more clear after the paths were established.
+
+- Token based authentication with multiple account types.
+  Originally wanted just one, but decided to make two paths and routes for doctors and patients authentication. Mainly because they had their own tables.
+
+- Custom file upload strategy.
+  Used vanilla js to pass the uploaded file to the component controller and stored in local storage instead of passing file through angular. Needed a separate library to pass with angular directly. Will replace when refactoring.
+
+---
+## Future plans:
+
+- Incorporate video upload.
+
+- Add comments to uploads for patient and doctor to view.
+
+- more doctor functionality to reject erroneous uploads.
+
+- more editing capability for patient and doctors.
+
+- Fb authentication
+
 
 **Earn rewards on your road to recovery**
