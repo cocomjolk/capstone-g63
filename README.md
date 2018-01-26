@@ -1,7 +1,7 @@
 
 ![logo](readme/recovery_logo.png)
 
-**A web and mobile app to help incentivize patients in physical therapy to complete prescribed exercises.**
+A web and mobile app to help incentivize patients in physical therapy to complete prescribed exercises.
 
 Patients receive rewards for providing evidence of an exercise being completed. It is also a way for doctors to know if they are doing the exercises correctly. Doctors choose what kind of rewards they want to provide.  
 
@@ -23,6 +23,17 @@ Patients receive rewards for providing evidence of an exercise being completed. 
 
 [Demo Video](http://slides.com/cocomjolk/deck/live#/1)
 ---
+
+Heres the typical scenario
+
+![pt workout](readme/pt_workout.png)
+
+We've all been here
+
+![excuse](readme/excuse.png)
+
+If only there was a way to show the doc we've been doing our exercises and be rewarded at the same time...not just in physical recovery.
+
 ## Walkthrough:
 ### 1. Sign In as patient
 Users can sign in as a patient or doctor.
@@ -73,6 +84,8 @@ Doctors can add and remove rewards.
 - more editing capability for patient and doctors.
 
 - Fb authentication
+
+- REFACTORING
 
 
 **Earn rewards on your road to recovery**
