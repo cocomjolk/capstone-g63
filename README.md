@@ -19,7 +19,6 @@ Patients receive rewards for providing evidence of an exercise being completed. 
 - Cloudinary (for image hosting)
 
 ---
-### Demo Videos
 
 [Demo Video](http://slides.com/cocomjolk/deck/live#/1)
 ---
