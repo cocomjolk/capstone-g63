@@ -21,6 +21,8 @@ Patients receive rewards for providing evidence of an exercise being completed. 
 ---
 
 [Demo Video](http://slides.com/cocomjolk/deck/live#/1)
+
+[Link to Website](https://g63-capstone.herokuapp.com/#!/)
 ---
 
 Heres the typical scenario
