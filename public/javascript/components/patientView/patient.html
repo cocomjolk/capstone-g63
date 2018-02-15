@@ -60,7 +60,7 @@
 
     <!-- USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT  -->
         <div class="row">
-          <div id="userContent" class="userContent">
+          <div id="userContent">
 
 
               <!-- Upload file Upload file Upload file Upload file -->
@@ -88,10 +88,12 @@
                   <div class="card" style="width: 18rem;">
                     <div class="patientList">
                         <h5 class="card-header text-black bg-secondary mb-3">{{activity.activity_action}} {{activity.activity_name}}</h5>
+                        <a href="{{activity.activity_img}}">
+                          <img class="card-img-activity " src="{{activity.activity_img}}" alt="Card image cap">
+                        </a>
                         <!-- <div class="card-body"> -->
                           <h6 class="card-text"> {{activity.activity_points}} points on {{ activity.created_at | date : format : timezone}}</h6>
 
-                          <!-- <a  ng-click="" class="btn btn-secondary btn-block">{{activity.media}} Look</a> -->
                         <!-- </div> -->
                     </div>
                   </div>

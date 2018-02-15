@@ -45,10 +45,10 @@
 
     </div>
 
-    
+
 <!-- USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT USER CONTENT  -->
     <div class="row">
-      <div id="userContent" class="userContent">
+      <div id="userContent">
 
         <div class="patients" ng-show='$ctrl.showPatientsView'>
           <h3 class="display-4 text-white">Patients</h3>
@@ -67,10 +67,12 @@
                         </button> Points: {{patient.points}}
                       </h5>
                     </div>
+                    <!-- EACH PATIENTS ACTIVITY -->
                     <div id="{{patient.id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                       <div class="card-body">
 
                         <div class="patient-activity" ng-show='$ctrl.activityContent'>
+                          <!-- NG-REPEAT  ACTIVITY LIST -->
                           <div ng-repeat='activity in $ctrl.activities' class="row" >
                             <div class="card" style="width: 100%; ">
                               {{ activity.created_at | date : format : timezone}}

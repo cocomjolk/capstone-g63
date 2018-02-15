@@ -39,6 +39,7 @@ body {
   width: 100%;
   text-align: center;
   background: #006699;
+  padding-bottom: 5rem;
 
 }
 
@@ -54,6 +55,8 @@ body {
 
 .card-img-activity {
   max-height: 3rem;
+  border:2px solid white;
+
 }
 
 .customDiv {
@@ -82,7 +85,6 @@ body {
   /*text-align: center;*/
 }
 
-
 .patientList {
   width: 100%;
   text-align: center;
@@ -104,7 +106,6 @@ body {
 
 }
 
-
-.userContent {
+/*.userContent {
 padding-bottom: 5rem;
-}
+}*/
