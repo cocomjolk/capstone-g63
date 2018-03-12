@@ -15,8 +15,8 @@
 
       vm.$onInit = () => {
         user = JSON.parse($window.localStorage.getItem('user'))
-        console.log($window.localStorage.getItem('user'));
-        console.log('from patient view', user);
+        //console.log($window.localStorage.getItem('user'));
+        //console.log('from patient view', user);
         vm.id = user.id
         vm.first_name = user.first_name
         vm.points = user.points
@@ -65,11 +65,11 @@
         let fileUpload = document.getElementById('file-upload');
         fileUpload.addEventListener('change', (event) => {
           let file = event.target.files[0];
-          console.log('file from html view:', file);
+          //console.log('file from html view:', file);
           let formData = new FormData();
           formData.append('file', file);
           formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-          console.log(formData);
+          //console.log(formData);
             axios({
             url: CLOUDINARY_URL,
             method: 'POST',
@@ -82,8 +82,8 @@
             //This needs to be saved to db to grab later.
             activity_img_url = res.data.secure_url
             $window.localStorage.setItem('activity_img_url', activity_img_url);
-            console.log('from patient.js, local storage:');
-            console.log($window.localStorage.activity_img_url);
+            // console.log('from patient.js, local storage:');
+            // console.log($window.localStorage.activity_img_url);
             }).catch(err => {
                 console.error(err);
                 });
@@ -96,8 +96,8 @@
         let photo_post = 5;
         user.points += photo_post
         let activity_img = $window.localStorage.getItem('activity_img_url')
-        console.log('successfully got activity image from local storage:');
-        console.log(activity_img);
+        // console.log('successfully got activity image from local storage:');
+        // console.log(activity_img);
 
         $http({
           method: 'POST',
@@ -111,7 +111,7 @@
             activity_img: activity_img
           }
         }).then(function(res) {
-          console.log('activity data', res);
+          // console.log('activity data', res);
 
 
           $http({
@@ -143,7 +143,7 @@
           }
         }).then(function(res) {
           vm.activities = res.data
-          console.log('activity data from get route', vm.activities);
+          //console.log('activity data from get route', vm.activities);
         }),
         function errorCallback(res) {}
         vm.activityContent = true;

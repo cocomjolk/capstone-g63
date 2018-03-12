@@ -5,8 +5,6 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
-
-
 // POST REDEEM ACTIVITY FROM USER POST REDEEM ACTIVITY FROM USER POST ACTIVITY FROM USER
 router.post('/redeem', (req, res) => {
     knex('activity')
@@ -21,15 +19,15 @@ router.post('/redeem', (req, res) => {
     .returning('*')
     .then((data) => {
       let activity = data[0];
-      console.log( 'coming from post route');
-      console.log(activity);
+      // console.log( 'coming from post route');
+      // console.log(activity);
       res.status(201).json(activity);
     });
   })
 
 // POST PHOTO ACTIVITY FROM USER POST PHOTO ACTIVITY FROM USER POST ACTIVITY FROM USER
 router.post('/upload', (req, res) => {
-    console.log('req.body from upload route:', req.body);
+    // console.log('req.body from upload route:', req.body);
     knex('activity')
     .insert({
       redeemed: false,
@@ -44,8 +42,8 @@ router.post('/upload', (req, res) => {
     .returning('*')
     .then((data) => {
       let activity = data[0];
-      console.log( 'coming from post route');
-      console.log(activity);
+      // console.log( 'coming from post route');
+      // console.log(activity);
       res.status(201).json(activity);
     });
   })
@@ -55,7 +53,7 @@ router.get('/', (req, res) => {
   knex('activity')
   .where({user_id: req.query.user_id})
   .then((activity) => {
-    console.log('user activity from route',activity)
+    // console.log('user activity from route',activity)
     res.status(200).json(activity);
   })
 });

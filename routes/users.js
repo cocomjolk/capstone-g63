@@ -6,14 +6,13 @@ const router = express.Router();
 const knex = require('../db/knex');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-
+const SECRETKEY = require('dotenv').config().parsed.secretkey;
 
 // USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD USER CREATE RECORD
 router.post('/', (req, res) => {
   bcrypt.hash(req.body.password, 12)
   .then( hashed_pass => {
-    console.log(hashed_pass);
+    //console.log(hashed_pass);
     knex('users')
     .insert({
       first_name: req.body.first_name,
@@ -31,9 +30,9 @@ router.post('/', (req, res) => {
       // create a token and send it
       let user = data[0];
       //create token, use ID to verify token later
-      const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
-      console.log( 'coming from post route');
-      console.log(user);
+      const token = jwt.sign({ type: "user", id: user.id}, SECRETKEY)
+      // console.log( 'coming from post route');
+      // console.log(user);
       res.status(201).json({ token: token });
     });
   })
@@ -42,7 +41,8 @@ router.post('/', (req, res) => {
 // VERIFY USER VERIFY USER VERIFY USER VERIFY USER VERIFY USER VERIFY USER VERIFY USER
 router.post('/verify', (req,res)=>{
   try {
-    let decoded = jwt.verify(req.body.token, "SUPER SECRET")
+    let decoded = jwt.verify(req.body.token, SECRETKEY)
+    //console.log(SECRETKEY);
     // look up id in your db
     let id = decoded.id
     //query db to send user info in the response
@@ -84,7 +84,7 @@ router.post('/email', (req, res) => {
     .then(function(result) {
       if (result == true){
         console.log('passwords match');
-        const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
+        const token = jwt.sign({ type: "user", id: user.id}, SECRETKEY)
         res.status(201).json({
           id: user.id,
           first_name: user.first_name,
@@ -127,7 +127,7 @@ router.get('/', (req, res) => {
 
 // GET USER WITH USER ID
 router.get('/id', (req, res) => {
-  console.log(req.query.id)
+  //console.log(req.query.id)
   knex('users')
   .where({id: req.query.id})
   //need first() to prevent from returning array

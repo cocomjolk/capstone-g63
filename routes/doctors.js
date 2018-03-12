@@ -6,11 +6,47 @@ const router = express.Router();
 const knex = require('../db/knex');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const SECRETKEY = require('dotenv').config().parsed.secretkey;
+
+//DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD
+router.post('/', (req, res) => {
+  // check for duplicate emails first
+  // hash the password
+  bcrypt.hash(req.body.password, 12)
+  .then( hashed_pass => {
+    knex('doctors')
+    .insert({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      password: hashed_pass,
+      email: req.body.email,
+      phone: req.body.phone,
+      img: req.body.img
+    })
+    //returning doctor id from post for token
+    .returning('*')
+    .then((data) => {
+      // create a token and send it
+      let doctor = data[0];
+      //Use doctor ID to verify token later
+      const token = jwt.sign({ type: "doctor", id: doctor.id}, SECRETKEY)
+      res.status(201).json({
+        id: doctor.id,
+        email: doctor.email,
+        first_name: doctor.first_name,
+        last_name: doctor.last_name,
+        phone: doctor.phone,
+        img: doctor.img,
+        token: token
+      });
+    });
+  })
+})
 
 // VERIFY TOKEN FOR DOCTOR VERIFY TOKEN FOR DOCTOR VERIFY TOKEN FOR DOCTOR VERIFY TOKEN FOR DOCTOR
 router.post('/verify', (req,res)=>{
   try {
-    let decoded = jwt.verify(req.body.token, "SUPER SECRET")
+    let decoded = jwt.verify(req.body.token, SECRETKEY)
     // look up id in your db
     let id = decoded.id
     //query db to send doctor info in the response
@@ -34,40 +70,6 @@ router.post('/verify', (req,res)=>{
   }
 })
 
-//DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD DOCTOR CREATE A RECORD
-router.post('/', (req, res) => {
-  // check for duplicate emails first
-  // hash the password
-  bcrypt.hash(req.body.password, 12)
-  .then( hashed_pass => {
-    knex('doctors')
-    .insert({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      password: hashed_pass,
-      email: req.body.email,
-      phone: req.body.phone,
-      img: req.body.img
-    })
-    //returning doctor id from post for token
-    .returning('*')
-    .then((data) => {
-      // create a token and send it
-      let doctor = data[0];
-      //Use doctor ID to verify token later
-      const token = jwt.sign({ type: "doctor", id: doctor.id}, "SUPER SECRET")
-      res.status(201).json({
-        id: doctor.id,
-        email: doctor.email,
-        first_name: doctor.first_name,
-        last_name: doctor.last_name,
-        phone: doctor.phone,
-        img: doctor.img,
-        token: token
-      });
-    });
-  })
-})
 
 //USER VERIFY PASSWORD WITH EMAIL
 router.post('/email', (req, res) => {
@@ -82,7 +84,7 @@ router.post('/email', (req, res) => {
     .then(function(result) {
       if (result == true){
         console.log('passwords match');
-        const token = jwt.sign({ type: "user", id: user.id}, "SUPER SECRET")
+        const token = jwt.sign({ type: "user", id: user.id}, SECRETKEY)
         res.status(201).json({
           id: user.id,
           first_name: user.first_name,
@@ -129,74 +131,5 @@ router.get('/doctor_id', (req, res) => {
   })
 });
 
-//USER GET DOCTOR INFORMATION WITH DOCTOR EMAIL
-// router.get('/email', (req, res) => {
-//   console.log(req.query)
-//   knex('doctors')
-//   .where({email: req.query.email})
-//   //need first() to prevent from returning array
-//   .first()
-//   .then((doctor) => {
-//     res.status(200).json(doctor);
-//   });
-// });
-
-// // DOCTORS EDIT
-// router.get('/:id/edit', function(req, res){
-//   knex('doctors')
-//   .select('*')
-//   .where({id: req.params.id})
-//   .first()
-//   .then(function(doctor){
-//     res.render('doctors/edit', {doctor:doctor})
-//    })
-// });
-//
-// //  DOCTORS UPDATE
-// router.patch('/:id', function(req, res){
-//   knex('doctors')
-//   .update(req.body)
-//   .where({id: req.params.id})
-//   .returning('*')
-//   .then((doctor) => {
-//     res.redirect('/doctors')
-//   })
-// })
-//
-// // DOCTORS DESTROY
-// router.delete('/:id', function(req, res){
-//   knex('doctors')
-//   .select('*')
-//   .where(({id: req.params.id}))
-//   .first()
-//   .del()
-//   .then(function(doctor){
-//     res.redirect('/doctors')
-//   })
-// })
-
-// // DOCTORS SHOW PAGE
-// router.get('/:id', function(req, res) {
-//   let doctor = {};
-//   knex('doctors')
-//   .select('*')
-//   //will pass patient ID from object from component page
-//   .where({id: req.params.id})
-//   .first()
-//   .then(function(doctor){
-//     doctor = doctor;
-//     knex('doctors')
-//     .orderBy('price', 'asc')
-//     .select('doctors.name', 'donuts.name', 'donuts.price')
-//     .where('doctors.name', doctor.name)
-//     .innerJoin('doctor_donuts', 'doctor_id', 'doctors.id')
-//     .innerJoin('donuts', 'donut_id', 'donuts.id')
-//     .then(function (donuts) {
-//       doctor.donuts = donuts;
-//       //console.log(doctor);
-//       res.render('doctors/show', {doctor: doctor})
-//     });
-//   });
-// });
 
 module.exports = router
